@@ -1,6 +1,5 @@
 // Get Supa Token v1
-// For git v1
-// I LIKE FOOD.
+// For git v1.1
 
 async function supaToken() {
   try {
