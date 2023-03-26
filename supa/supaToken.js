@@ -1,4 +1,5 @@
 // Get Supa Token v1
+// For git v1
 
 async function supaToken() {
   try {
