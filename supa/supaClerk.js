@@ -1,4 +1,5 @@
 // Client + Supa JWT v1.1
+// For git v2.0.1
 
 async function supaClerk(token) {
   try {
