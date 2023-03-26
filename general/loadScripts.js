@@ -11,7 +11,7 @@ const loadScript = (src) => {
     document.body.append(script);
   });
 };
-loadScript("https://supa.illusory.io/storahe/v1/object/public/js/clerk/loadClerk.js")
+loadScript("https://supa.illusory.io/storage/v1/object/public/js/clerk/loadClerk.js")
   .then(() =>
     console.log("Clerk loaded"),
     loadScript("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
