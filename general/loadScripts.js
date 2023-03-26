@@ -1,4 +1,4 @@
-/**
+/*
  * Loads a JavaScript file and returns a Promise for when it is loaded
  */
 const loadScript = (src) => {
