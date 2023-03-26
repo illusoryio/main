@@ -1,6 +1,7 @@
 /**
  * Loads a JavaScript file and returns a Promise for when it is loaded
  */
+// test
 const loadScript = (src) => {
   return new Promise((resolve, reject) => {
     const script = document.createElement("script");
