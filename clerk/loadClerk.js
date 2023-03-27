@@ -1,8 +1,7 @@
 // Load Clerk
 
-async function loadClerk(action) {
+async function loadClerk() {
   return new Promise((resolve) => {
-    setTimeout(() => {
       // Get this URL from the Clerk Dashboard
       const frontendApi = "clerk.a7i81.ec7ck.lcl.dev";
       const version = "@latest"; // Set to appropriate version
@@ -19,11 +18,9 @@ async function loadClerk(action) {
           // Set load options here...
         });
         console.log("Clerk loaded 🔒");
-        clerkActions(action);
+        clerkActions();
       });
       document.body.appendChild(script);
-      console.log("Script called");
       resolve();
-    }, 200);
   });
 }
