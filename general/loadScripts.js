@@ -12,25 +12,25 @@ const lsc = (src) => {
     });
 };
 
-function sc_loadClerk() {
+function lscLoadClerk() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/loadClerk.js")
         .then(() => console.log("Clerk js loaded"))
         .catch((err) => console.error(err.message));
 }
 
-function sc_supaToken() {
+function lscSupaToken() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js")
         .then(() => console.log("Supa Token js loaded"))
         .catch((err) => console.error(err.message));
 }
 
-function sc_supaClerk() {
+function lscSupaClerk() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js")
         .then(() => console.log("Supa Clerk js loaded"))
         .catch((err) => console.error(err.message));
 }
 
-function sc_getProxies() {
+function lscGetProxies() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
         .then(() => console.log("Get Proxies js loaded"))
         .catch((err) => console.error(err.message));
