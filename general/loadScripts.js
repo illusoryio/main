@@ -14,24 +14,24 @@ const lsc = (src) => {
 
 function sc_loadClerk() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/loadClerk.js")
-        .then(() => console.log("Clerk loaded"))
+        .then(() => console.log("Clerk js loaded"))
         .catch((err) => console.error(err.message));
 }
 
 function sc_supaToken() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js")
-        .then(() => console.log("Supa Token loaded"))
+        .then(() => console.log("Supa Token js loaded"))
         .catch((err) => console.error(err.message));
 }
 
 function sc_supaClerk() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js")
-        .then(() => console.log("Supa Clerk loaded"))
+        .then(() => console.log("Supa Clerk js loaded"))
         .catch((err) => console.error(err.message));
 }
 
 function sc_getProxies() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
-        .then(() => console.log("Get Proxies loaded"))
+        .then(() => console.log("Get Proxies js loaded"))
         .catch((err) => console.error(err.message));
 }
