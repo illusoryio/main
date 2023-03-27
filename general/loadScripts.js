@@ -18,20 +18,20 @@ function sc_loadClerk() {
         .catch((err) => console.error(err.message));
 }
 
-function sc_getProxies() {
-    lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
-        .then(() => console.log("Get Proxies loaded"))
-        .catch((err) => console.error(err.message));
-}
-
 function sc_supaToken() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js")
         .then(() => console.log("Supa Token loaded"))
         .catch((err) => console.error(err.message));
 }
 
-function sc_upaClerk() {
+function sc_supaClerk() {
     lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js")
         .then(() => console.log("Supa Clerk loaded"))
+        .catch((err) => console.error(err.message));
+}
+
+function sc_getProxies() {
+    lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
+        .then(() => console.log("Get Proxies loaded"))
         .catch((err) => console.error(err.message));
 }
