@@ -30,9 +30,3 @@ function lscGetProxies() {
         .then(() => console.log("Get Proxies js loaded"))
         .catch((err) => console.error(err.message));
 }
-
-function lscLoadClerk() {
-    lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/loadClerk.js")
-        .then(() => console.log("Clerk js loaded"))
-        .catch((err) => console.error(err.message));
-}
