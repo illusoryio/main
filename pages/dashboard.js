@@ -1,4 +1,4 @@
-// v1
+// v1.1
 
 // Load Clerk
 async function loadClerk() {
@@ -13,6 +13,7 @@ async function loadClerk() {
         script.async = true;
         script.src = `https://${frontendApi}/npm/@clerk/clerk-js${version}/dist/clerk.browser.js`;
         document.body.appendChild(script);
+        console.log('Clerk loaded 🔒');
         resolve();
     });
 }
