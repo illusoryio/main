@@ -52,7 +52,7 @@ async function lscGetProxies() {
 
 async function lscTimeAgo() {
     lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js")
-        .then(() => console.log("Get Proxies js loaded"))
+        .then(() => console.log("Get Time Ago js loaded"))
         .catch((err) => console.error(err.message));
 }
 
