@@ -15,11 +15,11 @@ async function loadClerk() {
   });
 }
 
-// // Adds listener to initialize ClerkJS after it's loaded
-// script.addEventListener("load", async function () {
-//   await window.Clerk.load({
-//     // Set load options here...
-//   });
-//   console.log("Clerk loaded 🔒");
-//   clerkActions();
-// });
+// Adds listener to initialize ClerkJS after it's loaded
+script.addEventListener("load", async function () {
+  await window.Clerk.load({
+    // Set load options here...
+  });
+  console.log("Clerk loaded 🔒");
+  clerkActions();
+});
