@@ -82,6 +82,17 @@ async function lscTimeAgo() {
     });
 }
 
+async function rpcProxy() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js")
+                .then(() => console.log("Get RPC Proxy js loaded"))
+                .catch((err) => console.error(err.message));
+            resolve();
+        }, 100);
+    });
+}
+
 async function pageInit() {
     await lscSupaToken();
     const supabaseClient = await lscSupaClerk();
@@ -95,7 +106,7 @@ async function pageInit() {
     await modalStart();
     await iniIx2();
     await hide_skel_dash();
-    await rpc_proxy(supabaseClient);
+    await rpcProxy(supabaseClient);
 }
 
 pageInit();
