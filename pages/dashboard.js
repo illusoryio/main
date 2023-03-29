@@ -1,8 +1,9 @@
-// v1.1
+// v1.2
 
 // Load Clerk
 async function loadClerk() {
     return new Promise((resolve) => {
+        setTimeout(() => {
         // Get this URL from the Clerk Dashboard
         const frontendApi = "clerk.a7i81.ec7ck.lcl.dev";
         const version = "@latest"; // Set to appropriate version
@@ -15,6 +16,7 @@ async function loadClerk() {
         document.body.appendChild(script);
         console.log('Clerk loaded 🔒');
         resolve();
+    }, 100);
     });
 }
 
@@ -23,41 +25,64 @@ async function loadClerk() {
 */
 const lsc = (src) => {
     return new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.onload = resolve;
-        script.onerror = reject;
-        script.src = src;
-        document.body.append(script);
+        setTimeout(() => {
+            const script = document.createElement("script");
+            script.type = "text/javascript";
+            script.onload = resolve;
+            script.onerror = reject;
+            script.src = src;
+            document.body.append(script);
+            resolve();
+        }, 100);
     });
 };
 
 
 async function lscSupaToken() {
-    lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js")
-        .then(() => console.log("Supa Token js loaded"))
-        .catch((err) => console.error(err.message));
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js")
+                .then(() => console.log("Supa Token js loaded"))
+                .catch((err) => console.error(err.message));
+            resolve();
+        }, 100);
+    });
 }
 
 async function lscSupaClerk() {
-    lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js")
-        .then(() => console.log("Supa Clerk js loaded"))
-        .catch((err) => console.error(err.message));
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js")
+                .then(() => console.log("Supa Clerk js loaded"))
+                .catch((err) => console.error(err.message));
+            resolve();
+        }, 100);
+    });
 }
 
 async function lscGetProxies() {
-    lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
-        .then(() => console.log("Get Proxies js loaded"))
-        .catch((err) => console.error(err.message));
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
+                .then(() => console.log("Get Proxies js loaded"))
+                .catch((err) => console.error(err.message));
+            resolve();
+        }, 100);
+    });
 }
 
 async function lscTimeAgo() {
-    lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js")
-        .then(() => console.log("Get Time Ago js loaded"))
-        .catch((err) => console.error(err.message));
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js")
+                .then(() => console.log("Get Time Ago js loaded"))
+                .catch((err) => console.error(err.message));
+            resolve();
+        }, 100);
+    });
 }
 
-async function play() {
+async function pageInit() {
     await lscSupaToken();
     await lscSupaClerk();
     await lscGetProxies();
@@ -65,4 +90,4 @@ async function play() {
     await loadClerk();
 }
 
-play();
+pageInit();
