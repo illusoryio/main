@@ -1,28 +1,28 @@
 // v1.2
 
-// Load Clerk
+//* Load Clerk
 async function loadClerk() {
     return new Promise((resolve) => {
         setTimeout(() => {
-        // Get this URL from the Clerk Dashboard
-        const frontendApi = "clerk.a7i81.ec7ck.lcl.dev";
-        const version = "@latest"; // Set to appropriate version
+            // Get this URL from the Clerk Dashboard
+            const frontendApi = "clerk.a7i81.ec7ck.lcl.dev";
+            const version = "@latest"; // Set to appropriate version
 
-        // Creates asyncronous script
-        const script = document.createElement("script");
-        script.setAttribute("data-clerk-frontend-api", frontendApi);
-        script.async = true;
-        script.src = `https://${frontendApi}/npm/@clerk/clerk-js${version}/dist/clerk.browser.js`;
-        document.body.appendChild(script);
-        console.log('Clerk loaded 🔒');
-        resolve();
-    }, 100);
+            // Creates asyncronous script
+            const script = document.createElement("script");
+            script.setAttribute("data-clerk-frontend-api", frontendApi);
+            script.async = true;
+            script.src = `https://${frontendApi}/npm/@clerk/clerk-js${version}/dist/clerk.browser.js`;
+            document.body.appendChild(script);
+            console.log('Clerk loaded 🔒');
+            resolve();
+        }, 100);
     });
 }
 
-/*
-* Loads a JavaScript file and returns a Promise for when it is loaded
-*/
+
+//* Loads a JavaScript file and returns a Promise for when it is loaded
+
 const lsc = (src) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -84,7 +84,7 @@ async function lscTimeAgo() {
 
 async function pageInit() {
     await lscSupaToken();
-    await lscSupaClerk();
+    const supabaseClient = await lscSupaClerk();
     await lscGetProxies();
     await lscTimeAgo();
     await loadClerk();
@@ -95,7 +95,7 @@ async function pageInit() {
     await modalStart();
     await iniIx2();
     await hide_skel_dash();
-    await rpc_proxy();
+    await rpc_proxy(supabaseClient);
 }
 
 pageInit();
