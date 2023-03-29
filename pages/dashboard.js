@@ -88,6 +88,14 @@ async function pageInit() {
     await lscGetProxies();
     await lscTimeAgo();
     await loadClerk();
+    await getTimeAgoManual();
+    await getTimeAgoReboot();
+    await getTimeAgoAuto();
+    await navStart();
+    await modalStart();
+    await iniIx2();
+    await hide_skel_dash();
+    await rpc_proxy();
 }
 
 pageInit();
