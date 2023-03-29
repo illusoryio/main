@@ -1,4 +1,4 @@
-// v1.2
+// v1.3.0
 
 //* Load Clerk
 async function loadClerk() {
