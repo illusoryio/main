@@ -88,9 +88,9 @@ async function pageInit() {
     await lscGetProxies();
     await lscTimeAgo();
     await loadClerk();
-    await getTimeAgoManual();
-    await getTimeAgoReboot();
-    await getTimeAgoAuto();
+    // await getTimeAgoManual();
+    // await getTimeAgoReboot();
+    // await getTimeAgoAuto();
     await navStart();
     await modalStart();
     await iniIx2();
