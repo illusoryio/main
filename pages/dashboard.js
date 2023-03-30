@@ -107,6 +107,7 @@ async function pageInit() {
     await iniIx2();
     await hide_skel_dash();
     await rpcProxy(supabaseClient);
+    //   await pageLoader();
 }
 
 pageInit();
