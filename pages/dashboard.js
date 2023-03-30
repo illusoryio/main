@@ -132,10 +132,10 @@ async function pageInit() {
     await modalStart();
     await iniIx2();
     await hide_skel_dash();
-    await lscRpcProxy(supabaseClient);
     await lscClerkActions();
     const action = "user_get_proxies";
     await clerkActions(action);
+    await lscRpcProxy(supabaseClient);
     //   await pageLoader();
 }
 
