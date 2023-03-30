@@ -97,7 +97,7 @@ async function pageInit() {
     await lscSupaToken();
     const supabaseClient = await lscSupaClerk();
     await loadClerk();
-    await lscGetProxies(supabaseClient);
+    await lscGetProxies();
     await lscTimeAgo();
     // await getTimeAgoManual();
     // await getTimeAgoReboot();
