@@ -1,4 +1,4 @@
-// v1.3.1
+// v1.4.1
 
 //* Load Clerk
 async function loadClerk() {
@@ -133,8 +133,9 @@ async function pageInit() {
     await iniIx2();
     await hide_skel_dash();
     await lscRpcProxy(supabaseClient);
+    await lscClerkActions();
     const action = "user_get_proxies";
-    await lscClerkActions(action);
+    await clerkActions(action);
     //   await pageLoader();
 }
 
