@@ -82,7 +82,18 @@ async function lscTimeAgo() {
     });
 }
 
-async function rpcProxy() {
+async function lscClerkActions() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js")
+                .then(() => console.log("Clerk Actions js loaded"))
+                .catch((err) => console.error(err.message));
+            resolve();
+        }, 100);
+    });
+}
+
+async function lscRpcProxy() {
     return new Promise((resolve) => {
         setTimeout(() => {
             lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js")
@@ -92,6 +103,21 @@ async function rpcProxy() {
         }, 100);
     });
 }
+
+
+async function clerkActions(action) {
+    // Authenticate request
+    const token = await supaToken();
+    console.log("supaToken", token);
+    const supc = await supaClerk(token);
+    console.log("supaClerk", supc);
+  
+    // Get Proxies
+    if (action == "user_get_proxies") {
+      const supcli = await getProxies(supc);
+      console.log("Get Proxies", supcli);
+    }
+  }
 
 async function pageInit() {
     await lscSupaToken();
@@ -106,7 +132,9 @@ async function pageInit() {
     await modalStart();
     await iniIx2();
     await hide_skel_dash();
-    await rpcProxy(supabaseClient);
+    await lscRpcProxy(supabaseClient);
+    const action = "user_get_proxies";
+    await lscClerkActions(action);
     //   await pageLoader();
 }
 
