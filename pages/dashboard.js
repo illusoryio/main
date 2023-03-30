@@ -96,8 +96,8 @@ async function rpcProxy() {
 async function pageInit() {
     await lscSupaToken();
     const supabaseClient = await lscSupaClerk();
-    await lscGetProxies();
     await loadClerk();
+    await lscGetProxies();
     await lscTimeAgo();
     // await getTimeAgoManual();
     // await getTimeAgoReboot();
