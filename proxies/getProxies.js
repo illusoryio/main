@@ -1,6 +1,5 @@
-// v3.1.2
-async function getProxies(supc) {
-  const supabaseClient = supc;
+// v3.2.1
+async function getProxies(supabaseClient) {
   const { data, error } = await supabaseClient
     .from("proxies_restricted")
     .select()
