@@ -13,8 +13,16 @@ async function loadClerk() {
             script.setAttribute("data-clerk-frontend-api", frontendApi);
             script.async = true;
             script.src = `https://${frontendApi}/npm/@clerk/clerk-js${version}/dist/clerk.browser.js`;
+            // Adds listener to initialize ClerkJS after it's loaded
+            script.addEventListener("load", async function () {
+                await window.Clerk.load({
+                    // Set load options here...
+                });
+                console.log("Clerk initiated 🔒");
+                clerkResolved();
+            });
             document.body.appendChild(script);
-            console.log('Clerk loaded 🔒');
+            console.log('Clerk script loaded');
             resolve();
         }, 100);
     });
@@ -105,38 +113,30 @@ async function lscRpcProxy() {
 }
 
 
-async function clerkActions(action) {
-    // Authenticate request
-    const token = await supaToken();
-    console.log("supaToken", token);
-    const supc = await supaClerk(token);
-    console.log("supaClerk", supc);
-  
-    // Get Proxies
-    if (action == "user_get_proxies") {
-      const supcli = await getProxies(supc);
-      console.log("Get Proxies", supcli);
-    }
-  }
-
 async function pageInit() {
     await lscSupaToken();
-    const supabaseClient = await lscSupaClerk();
+    await lscSupaClerk();
     await loadClerk();
+}
+
+pageInit();
+
+
+async function clerkResolved() {
     await lscGetProxies();
     await lscTimeAgo();
     // await getTimeAgoManual();
     // await getTimeAgoReboot();
     // await getTimeAgoAuto();
-    await navStart();
-    await modalStart();
-    await iniIx2();
-    await hide_skel_dash();
+
     await lscClerkActions();
     const action = "user_get_proxies";
     await clerkActions(action);
     await lscRpcProxy(supabaseClient);
+
+    await navStart();
+    await modalStart();
+    await iniIx2();
+    await hide_skel_dash();
     //   await pageLoader();
 }
-
-pageInit();
