@@ -97,7 +97,7 @@ async function lscClerkActions() {
                 .then(() => console.log("Clerk Actions js loaded"))
                 .catch((err) => console.error(err.message));
             resolve();
-        }, 100);
+        }, 500);
     });
 }
 
