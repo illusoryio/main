@@ -1,6 +1,11 @@
 /*
-| version : 1.6.8
+Author: Hello (World)
+dashboard.js (c) 2023
+Desc: description
+Created:  2023-03-31T16:10:05.904Z
+Modified: !date!
 */
+
 
 //* Load Clerk
 async function loadClerk() {
