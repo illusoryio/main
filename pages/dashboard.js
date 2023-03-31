@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T19:01:18.481Z
+Modified: 2023-03-31T19:06:58.735Z
 */
 
 //* Load Clerk
@@ -36,7 +36,7 @@ async function loadClerk() {
 
 //* Loads a JavaScript file and returns a Promise for when it is loaded
 
-const lsc = async (src) => {
+const lsc = (src) => {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.type = "text/javascript";
@@ -45,7 +45,6 @@ const lsc = async (src) => {
         script.src = src;
         script.async = false;
         document.body.append(script);
-            resolve();
     });
 };
 
