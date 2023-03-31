@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T19:44:44.342Z
+Modified: 2023-03-31T19:49:56.020Z
 */
 
 //* Load Clerk
@@ -40,7 +40,12 @@ const lsc = (src, name) => {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.onload = resolve(name + " loaded...");
+        script.addEventListener("load", async function () {
+            await script.onload({
+                // Set load options here...
+            });
+            resolve(name + " loaded...");
+        });
         script.onerror = reject;
         script.src = src;
         script.async = false;
