@@ -41,7 +41,7 @@ const lsc = async (src) => {
         document.body.append(script);
         setTimeout(() => {
             resolve();
-        }, 500);
+        }, 1000);
     });
 };
 
