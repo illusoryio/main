@@ -1,9 +1,8 @@
 /*
 dashboard.js (c) 2023
-Desc: Demo
+Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T16:21:42.223Z
-Verion: !version!
+Modified: 2023-03-31T18:06:42.003Z
 */
 
 //* Load Clerk

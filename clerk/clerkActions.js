@@ -1,3 +1,4 @@
+
 async function clerkActions(action) {
   // Authenticate request
   const token = await supaToken();
@@ -11,3 +12,4 @@ async function clerkActions(action) {
     console.log("Get Proxies", supcli);
   }
 }
+
