@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T18:06:42.003Z
+Modified: 2023-03-31T18:58:44.226Z
 */
 
 //* Load Clerk
@@ -44,9 +44,10 @@ const lsc = async (src) => {
         script.onload = resolve;
         script.onerror = reject;
         script.src = src;
+        script.async = false;
         document.body.append(script);
             resolve();
-        }, 1000);
+        }, 100);
     });
 };
 
