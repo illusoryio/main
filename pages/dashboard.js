@@ -1,4 +1,4 @@
-// v1.6.2
+// v1.6.3
 
 //* Load Clerk
 async function loadClerk() {
@@ -41,7 +41,7 @@ const lsc = async (src) => {
         document.body.append(script);
         setTimeout(() => {
             resolve();
-        }, 100);
+        }, 500);
     });
 };
 
