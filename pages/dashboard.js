@@ -1,13 +1,11 @@
 /*
-Author: Hello (World)
 dashboard.js (c) 2023
-Desc: description
+Desc: Demo
 Created:  2023-03-31T16:10:05.904Z
-Modified: !date!
+Modified: 2023-03-31T16:14:19.259Z
 */
 
-
-//* Load Clerk
+//* Load Clerk!
 async function loadClerk() {
     return new Promise((resolve) => {
         // Get this URL from the Clerk Dashboard
