@@ -1,4 +1,4 @@
-// v1.6.5
+// v1.6.4
 
 //* Load Clerk
 async function loadClerk() {
@@ -35,11 +35,11 @@ const lsc = async (src) => {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.type = "text/javascript";
-       // script.onload = resolve;
+        setTimeout(() => {
+        script.onload = resolve;
         script.onerror = reject;
         script.src = src;
         document.body.append(script);
-        setTimeout(() => {
             resolve();
         }, 1000);
     });
