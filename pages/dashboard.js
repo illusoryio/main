@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T19:42:30.854Z
+Modified: 2023-03-31T19:44:44.342Z
 */
 
 //* Load Clerk
@@ -62,7 +62,7 @@ async function lscSupaClerk() {
     await lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js",
         "supaClerk.js"
     )
-        .then(() => resolve())
+        .then((val) => console.log(val))
         .catch((err) => console.error(err.message));
 
 }
