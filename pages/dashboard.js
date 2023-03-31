@@ -41,7 +41,7 @@ const lsc = async (src) => {
         document.body.append(script);
         setTimeout(() => {
             resolve();
-        }, 300);
+        }, 100);
     });
 };
 
@@ -97,7 +97,7 @@ async function lscClerkActions() {
             .catch((err) => console.error(err.message));
         setTimeout(() => {
             resolve();
-        }, 2000);
+        }, 100);
     });
 }
 
