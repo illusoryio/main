@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T19:06:58.735Z
+Modified: 2023-03-31T19:41:47.175Z
 */
 
 //* Load Clerk
@@ -36,11 +36,11 @@ async function loadClerk() {
 
 //* Loads a JavaScript file and returns a Promise for when it is loaded
 
-const lsc = (src) => {
+const lsc = (src, name) => {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.onload = resolve;
+        script.onload = resolve(name + " loaded...");
         script.onerror = reject;
         script.src = src;
         script.async = false;
@@ -48,71 +48,59 @@ const lsc = (src) => {
     });
 };
 
-
 async function lscSupaToken() {
-    return new Promise((resolve) => {
-        lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js")
-            .then(() => console.log("Supa Token js loaded"))
-            .catch((err) => console.error(err.message));
-        setTimeout(() => {
-            resolve();
-        }, 100);
-    });
+    await lsc(
+        "https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js",
+        "supaToken.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
 }
 
+
 async function lscSupaClerk() {
-    return new Promise((resolve) => {
-        lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js")
-            .then(() => console.log("Supa Clerk js loaded"))
-            .catch((err) => console.error(err.message));
-        setTimeout(() => {
-            resolve();
-        }, 100);
-    });
+    await lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js",
+        "supaClerk.js"
+    )
+        .then(() => resolve())
+        .catch((err) => console.error(err.message));
+
 }
 
 async function lscGetProxies() {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js")
-                .then(() => console.log("Get Proxies js loaded"))
-                .catch((err) => console.error(err.message));
-            resolve();
-        }, 100);
-    });
+    await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js",
+        "getProxies.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
+
 }
 
 async function lscTimeAgo() {
-    return new Promise((resolve) => {
-        lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js")
-            .then(() => console.log("Get Time Ago js loaded"))
-            .catch((err) => console.error(err.message));
-        setTimeout(() => {
-            resolve();
-        }, 100);
-    });
+    await lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js",
+        "timeago.full.min.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
+
 }
 
 async function lscClerkActions() {
-    return new Promise((resolve) => {
-        lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js")
-            .then(() => console.log("Clerk Actions js loaded"))
-            .catch((err) => console.error(err.message));
-        setTimeout(() => {
-            resolve();
-        }, 1000);
-    });
+    await lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js",
+        "clerkActions.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
+
 }
 
 async function lscRpcProxy() {
-    return new Promise((resolve) => {
-        lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js")
-            .then(() => console.log("Get RPC Proxy js loaded"))
-            .catch((err) => console.error(err.message));
-        setTimeout(() => {
-            resolve();
-        }, 100);
-    });
+    await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
+        "rpcProxy.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
+
 }
 
 
