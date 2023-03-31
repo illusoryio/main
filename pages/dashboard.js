@@ -1,4 +1,4 @@
-// v1.5.4
+// v1.5.5
 
 //* Load Clerk
 async function loadClerk() {
@@ -97,7 +97,7 @@ async function lscClerkActions() {
                 .then(() => console.log("Clerk Actions js loaded"))
                 .catch((err) => console.error(err.message));
             resolve();
-        }, 100);
+        }, 2000);
     });
 }
 
