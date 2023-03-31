@@ -1,6 +1,6 @@
 /*
-| version  : 1.6.8
-| hello    : https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js
+| version :
+| 
 */
 
 //* Load Clerk
