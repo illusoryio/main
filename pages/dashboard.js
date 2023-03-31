@@ -130,13 +130,13 @@ async function clerkResolved() {
     // await getTimeAgoAuto();
 
     await lscClerkActions();
-    const action = "user_get_proxies";
-    await clerkActions(action);
-    await lscRpcProxy(supabaseClient);
+    // const action = "user_get_proxies";
+    // await clerkActions(action);
+    // await lscRpcProxy(supabaseClient);
 
-    await navStart();
-    await modalStart();
-    await iniIx2();
-    await hide_skel_dash();
+    // await navStart();
+    // await modalStart();
+    // await iniIx2();
+    // await hide_skel_dash();
     //   await pageLoader();
 }
