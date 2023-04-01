@@ -1,9 +1,7 @@
 
-async function clerkActions(action) {
+async function clerkActions(supc, action) {
   // Get Proxies
   if (action == "user_get_proxies") {
-    const supcli = await getProxies(supc);
-    console.log("Get Proxies", supcli);
+    await getProxies(supc);
   }
 }
-

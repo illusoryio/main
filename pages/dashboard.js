@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T13:11:28.300Z
+Modified: 2023-04-01T13:53:41.417Z
 */
 
 //* Load Clerk
@@ -50,23 +50,13 @@ const lsc = (src, name) => {
     });
 };
 
-async function lscSupaToken() {
+async function lscSupaClient() {
     await lsc(
-        "https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js",
-        "supaToken.js"
+        "https://supa.illusory.io/storage/v1/object/public/js/supa/supaClient.js",
+        "supaClient.js"
     )
         .then((val) => console.log(val))
         .catch((err) => console.error(err.message));
-}
-
-
-async function lscSupaClerk() {
-    await lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js",
-        "supaClerk.js"
-    )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-
 }
 
 async function lscGetProxies() {
@@ -107,8 +97,7 @@ async function lscRpcProxy() {
 
 
 async function pageInit() {
-    await lscSupaToken();
-    await lscSupaClerk();
+    await lscSupaClient();
     await loadClerk();
 }
 
@@ -116,12 +105,17 @@ pageInit();
 
 
 async function clerkResolved() {
+
+    // Authenticate request
+    const supc = await supaClient();
+
     // Get Proxies
     await lscGetProxies();
     // Authenticated actions
     await lscClerkActions();
+
     const action = "user_get_proxies";
-    await clerkActions(action);
+    await clerkActions(supc, action);
 
     // Load realtime
     await lscRpcProxy();
