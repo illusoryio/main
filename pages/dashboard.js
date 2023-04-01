@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-03-31T20:03:51.367Z
+Modified: 2023-04-01T13:03:08.305Z
 */
 
 //* Load Clerk
@@ -55,8 +55,6 @@ async function lscSupaToken() {
         "https://supa.illusory.io/storage/v1/object/public/js/supa/supaToken.js",
         "supaToken.js"
     )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
 }
 
 
@@ -64,27 +62,18 @@ async function lscSupaClerk() {
     await lsc("https://supa.illusory.io/storage/v1/object/public/js/supa/supaClerk.js",
         "supaClerk.js"
     )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-
 }
 
 async function lscGetProxies() {
     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js",
         "getProxies.js"
     )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-
 }
 
 async function lscTimeAgo() {
     await lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js",
         "timeago.full.min.js"
     )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-
 }
 
 async function lscClerkActions() {
@@ -100,9 +89,6 @@ async function lscRpcProxy() {
     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
         "rpcProxy.js"
     )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-
 }
 
 
