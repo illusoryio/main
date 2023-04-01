@@ -1,7 +1,7 @@
 
-async function clerkActions(supc, action) {
+async function clerkActions(supabaseClient, action) {
   // Get Proxies
   if (action == "user_get_proxies") {
-    await getProxies(supc);
+    await getProxies(supabaseClient);
   }
 }

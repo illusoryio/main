@@ -107,7 +107,7 @@ pageInit();
 async function clerkResolved() {
 
     // Authenticate request
-    const supc = await supaClient();
+    const supabaseClient = await supaClient();
 
     // Get Proxies
     await lscGetProxies();
@@ -115,7 +115,7 @@ async function clerkResolved() {
     await lscClerkActions();
 
     const action = "user_get_proxies";
-    await clerkActions(supc, action);
+    await clerkActions(supabaseClient, action);
 
     // Load realtime
     await lscRpcProxy();

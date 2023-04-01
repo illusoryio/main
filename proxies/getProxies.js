@@ -1,6 +1,11 @@
-// v3.1.2
-async function getProxies(supc) {
-  const supabaseClient = supc;
+/*
+getProxies.js (c) 2023
+Desc: Authenticate with Supabase
+Created:  2023-04-01T13:15:50.357Z
+Modified: 2023-04-01T13:47:35.626Z
+*/
+
+async function getProxies(supabaseClient) {
   const { data, error } = await supabaseClient
     .from("proxies_restricted")
     .select()
