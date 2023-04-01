@@ -2,11 +2,10 @@
 rpcProxy.js (c) 2023
 Desc: Load rpc
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T13:10:07.400Z
+Modified: 2023-04-01T13:58:47.216Z
 */
 
-async function rpcProxy(supc) {
-    const supabaseClient = await supc;
+async function rpcProxy(supabaseClient) {
     await supabaseClient
         .channel("proxies_restricted")
         .on("UPDATE", (payload) => {
