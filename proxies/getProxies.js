@@ -1,8 +1,8 @@
 /*
 getProxies.js (c) 2023
-Desc: Authenticate with Supabase
+Desc: Get Proxies Dashboard
 Created:  2023-04-01T13:15:50.357Z
-Modified: 2023-04-01T13:47:35.626Z
+Modified: 2023-04-01T13:57:21.395Z
 */
 
 async function getProxies(supabaseClient) {
