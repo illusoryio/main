@@ -2,7 +2,7 @@
 clerkActions.js (c) 2023
 Desc: Clerk Actions controller
 Created:  2023-04-01T13:15:50.357Z
-Modified: 2023-04-01T14:00:12.485Z
+Modified: 2023-04-01T14:00:17.963Z
 */
 
 async function clerkActions(supabaseClient, action) {
