@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T14:10:12.728Z
+Modified: 2023-04-01T14:26:06.152Z
 */
 
 //* Load Clerk
@@ -101,8 +101,6 @@ async function pageInit() {
     await loadClerk();
 }
 
-pageInit();
-
 
 async function clerkResolved() {
 
@@ -133,3 +131,4 @@ async function clerkResolved() {
 }
 
 
+pageInit();
