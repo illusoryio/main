@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T13:53:41.417Z
+Modified: 2023-04-01T14:09:09.758Z
 */
 
 //* Load Clerk
@@ -108,14 +108,14 @@ async function clerkResolved() {
 
     // Authenticate request
     const supabaseClient = await supaClient();
+    
+    // Load actions
+    await lscClerkActions();
 
     // Get Proxies
     await lscGetProxies();
-    // Authenticated actions
-    await lscClerkActions();
-
-    const action = "user_get_proxies";
-    await clerkActions(supabaseClient, action);
+    // const action = "user_get_proxies";
+    await clerkActions(supabaseClient, "user_get_proxies");
 
     // Load realtime
     await lscRpcProxy();
