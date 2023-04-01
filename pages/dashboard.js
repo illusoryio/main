@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T13:07:44.984Z
+Modified: 2023-04-01T13:11:28.300Z
 */
 
 //* Load Clerk
@@ -116,16 +116,21 @@ pageInit();
 
 
 async function clerkResolved() {
+    // Get Proxies
     await lscGetProxies();
+    // Authenticated actions
+    await lscClerkActions();
+    const action = "user_get_proxies";
+    await clerkActions(action);
+
+    // Load realtime
+    await lscRpcProxy();
+
+    // Load timeago
     await lscTimeAgo();
     // await getTimeAgoManual();
     // await getTimeAgoReboot();
     // await getTimeAgoAuto();
-
-    await lscClerkActions();
-    const action = "user_get_proxies";
-    await clerkActions(action);
-    await lscRpcProxy();
 
     await navStart();
     await modalStart();
