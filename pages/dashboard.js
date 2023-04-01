@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T13:04:14.381Z
+Modified: 2023-04-01T13:07:44.984Z
 */
 
 //* Load Clerk
@@ -125,7 +125,7 @@ async function clerkResolved() {
     await lscClerkActions();
     const action = "user_get_proxies";
     await clerkActions(action);
-    await lscRpcProxy(supabaseClient);
+    await lscRpcProxy();
 
     await navStart();
     await modalStart();
