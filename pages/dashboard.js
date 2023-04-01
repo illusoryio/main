@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-01T15:14:19.111Z
+Modified: 2023-04-01T21:39:38.203Z
 */
 
 // Load Clerk
@@ -91,6 +91,16 @@ async function lscClerkActions() {
 async function lscRpcProxy() {
     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
         "rpcProxy.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
+
+}
+
+
+async function lscResize() {
+    await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/resize.js",
+        "resize.js"
     )
         .then((val) => console.log(val))
         .catch((err) => console.error(err.message));
