@@ -5,6 +5,8 @@ Created:  2023-04-01T21:32:41.955Z
 Modified: 2023-04-01T21:38:16.518Z
 */
 
+// Resize Dashboard
+
 $("#cea_mod, #cea_nav").click(function (e) {
     $(document).ready(function () {
         // $(".crds_col").css({

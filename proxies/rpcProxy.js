@@ -5,6 +5,8 @@ Created:  2023-03-31T16:10:05.904Z
 Modified: 2023-04-01T13:58:47.216Z
 */
 
+// Load rpc
+
 async function rpcProxy(supabaseClient) {
     await supabaseClient
         .channel("proxies_restricted")
