@@ -2,7 +2,7 @@
 supaClient.js (c) 2023
 Desc: Authenticate with Supabase
 Created:  2023-04-01T13:15:50.357Z
-Modified: 2023-04-01T13:47:35.626Z
+Modified: 2023-04-01T14:04:40.011Z
 */
 
 async function supaToken() {
@@ -20,10 +20,10 @@ async function supaToken() {
 }
 
 async function supaClerk(token) {
-    let supabaseClient;
+    let client;
     try {
         const { createClient } = supabase;
-        supabaseClient = await createClient(
+        client = await createClient(
             "https://supa.illusory.io",
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94cWxvYndqd2Jib3VzZ2Rod3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1ODk4ODYsImV4cCI6MTk5MjE2NTg4Nn0.nla93WMcf1pNyFXZ5_1sniMD97CYj8y9lF5zKif2TrI",
             {
@@ -32,10 +32,16 @@ async function supaClerk(token) {
                 },
             }
         );
-        console.log(supabaseClient)
+        console.log(client)
     } catch (e) {
-        supabaseClient = "Invalid Supabase Client";
+        client = "Invalid Supabase Client";
         console.error(e);
     }
+    return client;
+}
+
+async function supaClient() {
+    await supaToken()
+    const supabaseClient = await supaClerk(token)
     return supabaseClient;
 }
