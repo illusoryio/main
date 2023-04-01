@@ -2,7 +2,7 @@
 supaClient.js (c) 2023
 Desc: Authenticate with Supabase
 Created:  2023-04-01T13:15:50.357Z
-Modified: 2023-04-01T14:04:40.011Z
+Modified: 2023-04-01T14:06:25.577Z
 */
 
 async function supaToken() {
@@ -41,7 +41,7 @@ async function supaClerk(token) {
 }
 
 async function supaClient() {
-    await supaToken()
-    const supabaseClient = await supaClerk(token)
-    return supabaseClient;
+    const token = await supaToken()
+    const client = await supaClerk(token)
+    return client;
 }
