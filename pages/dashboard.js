@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T19:41:01.936Z
+Modified: 2023-04-02T19:43:14.257Z
 */
 
 // Load Clerk
@@ -1072,7 +1072,7 @@ async function clerkResolved() {
     const supabaseClient = await supaClient();
 
     // Load actions
-    await lscClerkActions();
+   // await lscClerkActions();
 
     // Get Proxies
    // await lscGetProxies();
