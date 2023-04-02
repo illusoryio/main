@@ -32,3 +32,5 @@ async function loadClerk() {
         }, 100);
     });
 }
+
+console.log('lol.js loaded');
