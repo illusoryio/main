@@ -11,3 +11,5 @@ jobs:
           node-version: '14'
       - run: npm install -g bats
       - run: bats -v
+      - name: Automatic Releases
+        uses: marvinpinto/action-automatic-releases@v1.2.1    
