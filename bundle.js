@@ -1,1 +1,0 @@
-console.log("Idk what to put here!");console.log("I guess I could put a random number generator here");console.log("But I don't know how to do that yet");console.log("So I guess I will just leave it like this");console.log("I guess I could put a random number generator here");console.log("Okay?");console.log("lol.js loaded!");console.log("Why you so funny?");
