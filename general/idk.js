@@ -9,3 +9,4 @@ Version: 1
 
 console.log('Idk what to put here!');
 console.log('I guess I could put a random number generator here');
+console.log(`But I don't know how to do that yet`);
