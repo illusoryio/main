@@ -2,7 +2,7 @@
 lol.js (c) 2023
 Desc: Demo
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T15:19:47.311Z
+Modified: 2023-04-02T15:47:59.469Z
 */
 
 //* Load Clerk
@@ -33,4 +33,4 @@ async function loadClerk() {
     });
 }
 
-console.log('lol.js loaded, okay?');
+console.log('lol.js loaded!');
