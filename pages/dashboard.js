@@ -2,12 +2,12 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T22:51:53.961Z
+Modified: 2023-04-02T22:54:56.516Z
 */
 
 
 //* -------------------------------------------------------------------------- *//
-                              ///* [Load Clerk]                             
+                              ///* [Load Clerk v1.0.0]                             
 //* -------------------------------------------------------------------------- *//
 
 async function loadClerk() {
@@ -39,11 +39,11 @@ async function loadClerk() {
 
 
 //* -------------------------------------------------------------------------- *//
-                            ///* [Load Scripts]                                
+                            ///* [Load Scripts v1.0.0]                                
 //* -------------------------------------------------------------------------- *//
 
 
-//* Loads a JavaScript file and returns a Promise for when it is loaded
+// Loads a JavaScript file and returns a Promise for when it is loaded
 
 const lsc = (src, name) => {
     return new Promise((resolve, reject) => {
@@ -61,39 +61,50 @@ const lsc = (src, name) => {
 
 
 //* -------------------------------------------------------------------------- *//
-                            ///* [Load SupaClient]                        
+                            ///* [Load SupaClient v1.0.0]                        
 //* -------------------------------------------------------------------------- *//
 
-// Scritps to load
-// Client + Supa JWT v1.1
+
+async function supaToken() {
+    let token;
+    try {
+        token = await window.Clerk.session.getToken({
+            template: "supabase-auth",
+        });
+        console.log("supaToken", token);
+    } catch (e) {
+        token = "Invalid token";
+        console.error(err);
+    }
+    return token;
+}
 
 async function supaClerk(token) {
+    let client;
     try {
-      let supabaseClient = null;
-      const { createClient } = supabase;
-      supabaseClient = createClient(
-        "https://supa.illusory.io",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94cWxvYndqd2Jib3VzZ2Rod3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1ODk4ODYsImV4cCI6MTk5MjE2NTg4Nn0.nla93WMcf1pNyFXZ5_1sniMD97CYj8y9lF5zKif2TrI",
-        {
-          global: {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        }
-      );
-      console.log(supabaseClient)
-      return supabaseClient;
-    } catch (err) {
-      console.error(err);
+        const { createClient } = supabase;
+        client = await createClient(
+            "https://supa.illusory.io",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94cWxvYndqd2Jib3VzZ2Rod3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1ODk4ODYsImV4cCI6MTk5MjE2NTg4Nn0.nla93WMcf1pNyFXZ5_1sniMD97CYj8y9lF5zKif2TrI",
+            {
+                global: {
+                    headers: { Authorization: `Bearer ${token}` },
+                },
+            }
+        );
+        console.log(client)
+    } catch (e) {
+        client = "Invalid Supabase Client";
+        console.error(e);
     }
-  }
+    return client;
+}
 
-
-
-
-
-
-
-
+async function supaClient() {
+    const token = await supaToken()
+    const client = await supaClerk(token)
+    return client;
+}
 
 
 // async function lscSupaClient() {
