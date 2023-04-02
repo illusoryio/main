@@ -2,7 +2,7 @@
 app.js (c) 2023
 Desc: description
 Created:  2023-04-02T22:07:54.380Z
-Modified: 2023-04-02T22:34:07.452Z
+Modified: 2023-04-02T22:36:41.963Z
 */
 
 /// [Auth/Clerk]
@@ -76,6 +76,14 @@ async function supaClient() {
     const client = await supaClerk(token)
     return client;
 }
+
+
+async function clerkActions(supabaseClient, action) {
+    // Get Proxies
+    if (action == "user_get_proxies") {
+      await getProxies(supabaseClient);
+    }
+  }
 
 /// [Load Scripts]
 
