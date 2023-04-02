@@ -33,4 +33,4 @@ async function loadClerk() {
     });
 }
 
-console.log('lol.js loaded');
+console.log('lol.js loaded!');
