@@ -1,11 +1,14 @@
 /*
-dashboard.js (c) 2023
-Desc: Dashboard scripts
-Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T21:58:07.585Z
+app.js (c) 2023
+Desc: description
+Created:  2023-04-02T22:07:54.380Z
+Modified: 2023-04-02T22:34:07.452Z
 */
 
-// Load Clerk
+/// [Auth/Clerk]
+
+// Load Clerk v1.0.0
+
 async function loadClerk() {
     return new Promise((resolve) => {
         // Get this URL from the Clerk Dashboard
@@ -33,6 +36,48 @@ async function loadClerk() {
     });
 }
 
+async function supaToken() {
+    let token;
+    try {
+        token = await window.Clerk.session.getToken({
+            template: "supabase-auth",
+        });
+        console.log("supaToken", token);
+    } catch (e) {
+        token = "Invalid token";
+        console.error(err);
+    }
+    return token;
+}
+
+async function supaClerk(token) {
+    let client;
+    try {
+        const { createClient } = supabase;
+        client = await createClient(
+            "https://supa.illusory.io",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94cWxvYndqd2Jib3VzZ2Rod3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1ODk4ODYsImV4cCI6MTk5MjE2NTg4Nn0.nla93WMcf1pNyFXZ5_1sniMD97CYj8y9lF5zKif2TrI",
+            {
+                global: {
+                    headers: { Authorization: `Bearer ${token}` },
+                },
+            }
+        );
+        console.log(client)
+    } catch (e) {
+        client = "Invalid Supabase Client";
+        console.error(e);
+    }
+    return client;
+}
+
+async function supaClient() {
+    const token = await supaToken()
+    const client = await supaClerk(token)
+    return client;
+}
+
+/// [Load Scripts]
 
 //* Loads a JavaScript file and returns a Promise for when it is loaded
 
@@ -51,29 +96,6 @@ const lsc = (src, name) => {
 };
 
 //* Scritps to load
-
-
-// Client + Supa JWT v1.1
-
-async function supaClerk(token) {
-    try {
-      let supabaseClient = null;
-      const { createClient } = supabase;
-      supabaseClient = createClient(
-        "https://supa.illusory.io",
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im94cWxvYndqd2Jib3VzZ2Rod3NkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY1ODk4ODYsImV4cCI6MTk5MjE2NTg4Nn0.nla93WMcf1pNyFXZ5_1sniMD97CYj8y9lF5zKif2TrI",
-        {
-          global: {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        }
-      );
-      console.log(supabaseClient)
-      return supabaseClient;
-    } catch (err) {
-      console.error(err);
-    }
-  }
 
 // async function lscSupaClient() {
 //     await lsc(
@@ -129,8 +151,9 @@ async function lscTimeAgo() {
 
 // }
 
+/// [Dashboard/Resize]
 
-// Resize Dashboard
+//* Resize Dashboard v1.0.0
 
 $("#cea_mod, #cea_nav").click(function (e) {
     $(document).ready(function () {
@@ -368,7 +391,10 @@ $("#cea_mod, #cea_nav").click(function (e) {
     });
 });
 
-//* Get Proxies
+
+/// [Dashboard/Get Proxies]
+
+//* Get Proxies v1.0.0
 
 async function getProxies(supabaseClient) {
     const { data, error } = await supabaseClient
@@ -598,8 +624,9 @@ async function getProxies(supabaseClient) {
     });
 }
 
+/// [Dashboard/RPC]
 
-// Load rpc
+//* Load RPC v1.0.0
 
 async function rpcProxy(supabaseClient) {
     await supabaseClient
@@ -763,7 +790,9 @@ async function rpcProxy(supabaseClient) {
         .subscribe();
 }
 
-// Modal interact
+/// [Dashboard/Modal Interact]
+
+//* Modal Interact v1.0.0
 
 async function interact(clicked_object) {
     await openModal();
@@ -898,6 +927,9 @@ async function interact(clicked_object) {
     });
 }
 
+/// [Dashboard/Modal Open_Close]
+
+
 // Modal open/close
 
 async function modalStart() {
@@ -937,7 +969,10 @@ async function closeModal() {
     });
 }
 
-//* Other functions
+// Modal time ago
+
+
+/// [Other/Plus Minus]
 
 // Plus Minus fields
 
@@ -951,6 +986,8 @@ $('.sub_min').click(function () {
         if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
     }
 });
+
+/// [Nav/Open_Close]
 
 // Nav open/close
 async function navStart() {
@@ -975,6 +1012,9 @@ async function openNav() {
         }, 100);
     });
 }
+
+/// [Dashboard/Skeletons]
+
 
 // Hide skeletons
 
@@ -1032,7 +1072,7 @@ function iniIx2() {
 }
 
 
-//* Actions
+///* [Dashboard/Actions]
 
 // Change IP modal
 
@@ -1095,10 +1135,10 @@ async function clerkResolved() {
     const supabaseClient = await supaClient();
 
     // Load actions
-   // await lscClerkActions();
+    // await lscClerkActions();
 
     // Get Proxies
-   // await lscGetProxies();
+    // await lscGetProxies();
     await clerkActions(supabaseClient, "user_get_proxies");
 
     // Load realtime
