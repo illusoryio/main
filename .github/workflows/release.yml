@@ -1,16 +1,28 @@
-name: Create release
-
-on:
-  push:
-    branches: ['main']
-
-jobs:
-  release:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Automatic Release Creation
-        uses: lr0pb/generate-release@v0.2.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+---
+    name: "pre-release"
+    
+    on:
+      push:
+        branches:
+          - "master"
+    
+    jobs:
+      pre-release:
+        name: "Pre Release"
+        runs-on: "ubuntu-latest"
+    
+        steps:
+          # ...
+          - name: "Build & test"
+            run: |
+              echo "done!"
+    
+          - uses: "marvinpinto/action-automatic-releases@latest"
+            with:
+              repo_token: "${{ secrets.GITHUB_TOKEN }}"
+              automatic_release_tag: "latest"
+              prerelease: true
+              title: "Development Build"
+              files: |
+                LICENSE.txt
+                *.jar
