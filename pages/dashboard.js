@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T19:07:03.117Z
+Modified: 2023-04-02T19:41:01.936Z
 */
 
 // Load Clerk
@@ -79,14 +79,14 @@ async function lscTimeAgo() {
 
 }
 
-async function lscClerkActions() {
-    await lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js",
-        "clerkActions.js"
-    )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
+// async function lscClerkActions() {
+//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js",
+//         "clerkActions.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
 
-}
+// }
 
 // async function lscRpcProxy() {
 //     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
@@ -97,14 +97,14 @@ async function lscClerkActions() {
 
 // }
 
-async function lscResize() {
-    await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/resize.js",
-        "resize.js"
-    )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
+// async function lscResize() {
+//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/resize.js",
+//         "resize.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
 
-}
+// }
 
 
 // Resize Dashboard
