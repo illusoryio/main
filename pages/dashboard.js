@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T19:43:14.257Z
+Modified: 2023-04-02T21:50:32.342Z
 */
 
 // Load Clerk
@@ -52,14 +52,14 @@ const lsc = (src, name) => {
 
 //* Scritps to load
 
-async function lscSupaClient() {
-    await lsc(
-        "https://supa.illusory.io/storage/v1/object/public/js/supa/supaClient.js",
-        "supaClient.js"
-    )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-}
+// async function lscSupaClient() {
+//     await lsc(
+//         "https://supa.illusory.io/storage/v1/object/public/js/supa/supaClient.js",
+//         "supaClient.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
+// }
 
 // async function lscGetProxies() {
 //     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js",
@@ -1060,7 +1060,7 @@ async function reboot_device() {
 //* Page load async
 
 async function pageInit() {
-    await lscSupaClient();
+   // await lscSupaClient();
     await loadClerk();
 }
 
