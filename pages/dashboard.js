@@ -2,10 +2,14 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-02T21:58:07.585Z
+Modified: 2023-04-02T22:51:53.961Z
 */
 
-// Load Clerk
+
+//* -------------------------------------------------------------------------- *//
+                              ///* [Load Clerk]                             
+//* -------------------------------------------------------------------------- *//
+
 async function loadClerk() {
     return new Promise((resolve) => {
         // Get this URL from the Clerk Dashboard
@@ -34,6 +38,11 @@ async function loadClerk() {
 }
 
 
+//* -------------------------------------------------------------------------- *//
+                            ///* [Load Scripts]                                
+//* -------------------------------------------------------------------------- *//
+
+
 //* Loads a JavaScript file and returns a Promise for when it is loaded
 
 const lsc = (src, name) => {
@@ -50,9 +59,12 @@ const lsc = (src, name) => {
     });
 };
 
-//* Scritps to load
 
+//* -------------------------------------------------------------------------- *//
+                            ///* [Load SupaClient]                        
+//* -------------------------------------------------------------------------- *//
 
+// Scritps to load
 // Client + Supa JWT v1.1
 
 async function supaClerk(token) {
@@ -74,6 +86,15 @@ async function supaClerk(token) {
       console.error(err);
     }
   }
+
+
+
+
+
+
+
+
+
 
 // async function lscSupaClient() {
 //     await lsc(
@@ -128,6 +149,14 @@ async function lscTimeAgo() {
 //         .catch((err) => console.error(err.message));
 
 // }
+
+
+
+
+
+
+
+
 
 
 // Resize Dashboard
