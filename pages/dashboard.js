@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T17:44:55.586Z
+Modified: 2023-04-03T18:08:26.022Z
 */
 
 
@@ -144,6 +144,11 @@ async function supaClient() {
 
 
 async function getProxies(supabaseClient) {
+    if (typeof supabaseClient !== "undefined") {
+        var supabaseClient = await supaClient();
+    } else {
+        var supabaseClient = supabaseClient;
+    }
     const { data, error } = await supabaseClient
         .from("proxies_restricted")
         .select()
@@ -998,7 +1003,7 @@ async function getTimeAgoAuto() {
         };
 
         // Check if there is any auto change on
-        
+
         const on = document.querySelectorAll(".auto_change_on");
         if (on.length > 0) {
             timeago.register("en_US", auto_locale);
