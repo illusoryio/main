@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T17:37:17.354Z
+Modified: 2023-04-03T17:44:55.586Z
 */
 
 
@@ -1044,6 +1044,7 @@ async function interact(clicked_object) {
     });
 
     var proxy = clicked_object.getAttribute("interact");
+    const supabaseClient = await supaClient();
     const { data, error } = await supabaseClient
         .from("proxies_restricted")
         .select()
