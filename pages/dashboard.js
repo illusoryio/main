@@ -2,13 +2,16 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T15:19:17.725Z
+Modified: 2023-04-03T16:31:33.820Z
 */
 
 
-//* -------------------------------------------------------------------------- *//
-//*                           // [Load Clerk v1.0.0]                           *//
-//* -------------------------------------------------------------------------- *//
+/**=======================================================================================================================
+ * 
+ * * /// [Load Clerk v1.0.0]
+ * ? Loads ClerkJS and returns a promise
+ * 
+ *=======================================================================================================================**/
 
 
 async function loadClerk() {
@@ -39,9 +42,12 @@ async function loadClerk() {
 }
 
 
-//* -------------------------------------------------------------------------- *//
-                            ///* [Load Scripts v1.0.0]                                
-//* -------------------------------------------------------------------------- *//
+/**=======================================================================================================================
+ * 
+ * * /// [Load Scripts v1.0.0]
+ * ? Loads scripts in order
+ * 
+ *=======================================================================================================================**/
 
 
 // Loads a JavaScript file and returns a Promise for when it is loaded
@@ -61,9 +67,65 @@ const lsc = (src, name) => {
 };
 
 
-//* -------------------------------------------------------------------------- *//
-                            ///* [Load SupaClient v1.0.0]                        
-//* -------------------------------------------------------------------------- *//
+
+//* Scripts to load
+
+
+
+
+// async function lscGetProxies() {
+//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js",
+//         "getProxies.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
+
+// }
+
+async function lscTimeAgo() {
+    await lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js",
+        "timeago.full.min.js"
+    )
+        .then((val) => console.log(val))
+        .catch((err) => console.error(err.message));
+
+}
+
+// async function lscClerkActions() {
+//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js",
+//         "clerkActions.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
+
+// }
+
+// async function lscRpcProxy() {
+//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
+//         "rpcProxy.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
+
+// }
+
+// async function lscResize() {
+//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/resize.js",
+//         "resize.js"
+//     )
+//         .then((val) => console.log(val))
+//         .catch((err) => console.error(err.message));
+
+// }
+
+
+/**=======================================================================================================================
+ * 
+ * *  /// [Load SupaClient v1.0.0]
+ * ? Autheticates Clerk with Supabase and returns a Supabase client
+ * 
+ *=======================================================================================================================**/
+
 
 
 async function supaToken() {
@@ -108,9 +170,17 @@ async function supaClient() {
 }
 
 
-//* -------------------------------------------------------------------------- *//
-                            ///* [Get Proxies v1.0.0]                        
-//* -------------------------------------------------------------------------- *//
+
+
+
+/**=======================================================================================================================
+ * 
+ * *  /// [Get Proxies v1.0.0]
+ * ? Gets proxies from Supabase and displays them on the page
+ * 
+ *=======================================================================================================================**/
+
+
 
 
 async function getProxies(supabaseClient) {
@@ -344,59 +414,16 @@ async function getProxies(supabaseClient) {
 
 
 
-// async function lscGetProxies() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js",
-//         "getProxies.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
-
-async function lscTimeAgo() {
-    await lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js",
-        "timeago.full.min.js"
-    )
-        .then((val) => console.log(val))
-        .catch((err) => console.error(err.message));
-
-}
-
-// async function lscClerkActions() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js",
-//         "clerkActions.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
-
-// async function lscRpcProxy() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
-//         "rpcProxy.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
-
-// async function lscResize() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/resize.js",
-//         "resize.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Resize Dashboard v1.0.0]
+ * ? Resizes cards and modal to fit screen size
+ *  
+ *  
+ *=======================================================================================================================**/
 
 
-
-
-// Hey
-
-//* -------------------------------------------------------------------------- *//
-//*                        /// [Resize Dashboard v1.0.0]                       *//
-//* -------------------------------------------------------------------------- *//
 
 $("#cea_mod, #cea_nav").click(function (e) {
     $(document).ready(function () {
@@ -636,7 +663,16 @@ $("#cea_mod, #cea_nav").click(function (e) {
 
 
 
-// Load rpc
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Load RPC v1.0.0]
+ * ? This function is used to load the RPC data from the database and display it on the page.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+
 
 async function rpcProxy(supabaseClient) {
     await supabaseClient
@@ -800,7 +836,18 @@ async function rpcProxy(supabaseClient) {
         .subscribe();
 }
 
-// Modal interact
+
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Modal Details v1.0.0]
+ * ? This function is used to interact with the modal and display the proxy information.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+
 
 async function interact(clicked_object) {
     await openModal();
@@ -935,7 +982,15 @@ async function interact(clicked_object) {
     });
 }
 
-// Modal open/close
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Modal Open_Close v1.0.0]
+ *  
+ *  
+ *=======================================================================================================================**/
+
 
 async function modalStart() {
     return new Promise((resolve) => {
@@ -974,22 +1029,16 @@ async function closeModal() {
     });
 }
 
-//* Other functions
 
-// Plus Minus fields
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Nav Open_Close v1.0.0]
+ *  
+ *  
+ *=======================================================================================================================**/
 
-$('.add_min').click(function () {
-    if ($(this).prev().val() < 1440) {
-        $(this).prev().val(+$(this).prev().val() + 1);
-    }
-});
-$('.sub_min').click(function () {
-    if ($(this).next().val() > 1) {
-        if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
-    }
-});
 
-// Nav open/close
 async function navStart() {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -1012,6 +1061,44 @@ async function openNav() {
         }, 100);
     });
 }
+
+
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Plus Minus Fields v1.0.0]
+ * ? Function to add/subtract 1 from a number input field.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+
+$('.add_min').click(function () {
+    if ($(this).prev().val() < 1440) {
+        $(this).prev().val(+$(this).prev().val() + 1);
+    }
+});
+$('.sub_min').click(function () {
+    if ($(this).next().val() > 1) {
+        if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
+    }
+});
+
+
+
+
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Skeletons v1.0.0]
+ * ? Functions to hide/show skeletons.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+
 
 // Hide skeletons
 
@@ -1054,6 +1141,16 @@ async function show_skel_mod() {
     });
 }
 
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Animations v1.0.0]
+ * ? Functions to load animations.
+ *  
+ *  
+ *=======================================================================================================================**/
+
 // Animations
 
 function iniIx2() {
@@ -1069,9 +1166,16 @@ function iniIx2() {
 }
 
 
-//* Actions
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Actions v1.0.0]
+ * ? Functions to perform actions.
+ *  
+ *  
+ *=======================================================================================================================**/
 
-// Change IP modal
+//* Change IP modal
 
 $("#change_ip_mod").click(function () {
     change_ip();
@@ -1094,7 +1198,7 @@ async function change_ip() {
 }
 
 
-// Reboot proxy modal
+//* Reboot proxy modal
 
 $("#reboot_mod").click(function () {
     reboot_device();
@@ -1117,12 +1221,32 @@ async function reboot_device() {
 }
 
 
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Page Load v1.0.0]
+ * ? Functions to load page.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+
 //* Page load async
 
 async function pageInit() {
    // await lscSupaClient();
     await loadClerk();
 }
+
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [Clerk Resolved v1.0.0]
+ * ? What to do when Clerk is resolved.
+ *  
+ *  
+ *=======================================================================================================================**/
 
 // Clerk resolved async
 
@@ -1131,15 +1255,11 @@ async function clerkResolved() {
     // Authenticate request
     const supabaseClient = await supaClient();
 
-    // Load actions
-   // await lscClerkActions();
-
     // Get Proxies
-   // await lscGetProxies();
     await clerkActions(supabaseClient, "user_get_proxies");
 
     // Load realtime
-    await lscRpcProxy();
+    await rpcProxy(supabaseClient);
 
     // Load timeago
     await lscTimeAgo();
