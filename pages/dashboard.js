@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T17:00:02.595Z
+Modified: 2023-04-03T17:37:17.354Z
 */
 
 
@@ -147,7 +147,7 @@ async function getProxies(supabaseClient) {
     const { data, error } = await supabaseClient
         .from("proxies_restricted")
         .select()
-        .order("proxy_name", { ascending: true }); 
+        .order("proxy_name", { ascending: true });
     return new Promise((resolve) => {
         setTimeout(() => {
             if (error) {
@@ -997,8 +997,16 @@ async function getTimeAgoAuto() {
             ][index];
         };
 
-        timeago.register("en_US", auto_locale);
-        timeago.render(document.querySelectorAll(".auto_change_on"));
+        // Check if there is any auto change on
+        
+        const on = document.querySelectorAll(".auto_change_on");
+        if (on.length > 0) {
+            timeago.register("en_US", auto_locale);
+            timeago.render(document.querySelectorAll(".auto_change_on"));
+        } else {
+            console.log("No auto change on");
+        }
+
         setTimeout(() => {
             resolve("Set time ago...");
         }, 200);
@@ -1349,9 +1357,9 @@ function iniIx2() {
 async function clerkActions(supabaseClient, action) {
     // Get Proxies
     if (action == "user_get_proxies") {
-      await getProxies(supabaseClient);
+        await getProxies(supabaseClient);
     }
-  }
+}
 
 
 
@@ -1426,7 +1434,7 @@ async function reboot_device() {
 //* Page load async
 
 async function pageInit() {
-   // await lscSupaClient();
+    // await lscSupaClient();
     await loadClerk();
 }
 
