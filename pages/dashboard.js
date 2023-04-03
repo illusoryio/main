@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T15:18:31.512Z
+Modified: 2023-04-03T15:19:17.725Z
 */
 
 
@@ -394,11 +394,9 @@ async function lscTimeAgo() {
 
 
 
-// [Resize Dashboard v1.0.0]
-
-
-
-// Resize Dashboard
+//* -------------------------------------------------------------------------- *//
+//*                        /// [Resize Dashboard v1.0.0]                       *//
+//* -------------------------------------------------------------------------- *//
 
 $("#cea_mod, #cea_nav").click(function (e) {
     $(document).ready(function () {
