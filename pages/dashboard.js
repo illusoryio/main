@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T16:42:32.003Z
+Modified: 2023-04-03T16:43:06.452Z
 */
 
 
@@ -70,6 +70,7 @@ const lsc = (src, name) => {
 
 //* Scripts to load
 
+// TimeAgo External Script
 
 async function lscTimeAgo() {
     await lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js",
