@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T16:37:08.420Z
+Modified: 2023-04-03T16:37:42.297Z
 */
 
 
@@ -71,15 +71,6 @@ const lsc = (src, name) => {
 //* Scripts to load
 
 
-// async function lscGetProxies() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/getProxies.js",
-//         "getProxies.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
-
 async function lscTimeAgo() {
     await lsc("https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.full.min.js",
         "timeago.full.min.js"
@@ -88,33 +79,6 @@ async function lscTimeAgo() {
         .catch((err) => console.error(err.message));
 
 }
-
-// async function lscClerkActions() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/clerk/clerkActions.js",
-//         "clerkActions.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
-
-// async function lscRpcProxy() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/rpcProxy.js",
-//         "rpcProxy.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
-
-// async function lscResize() {
-//     await lsc("https://supa.illusory.io/storage/v1/object/public/js/proxies/resize.js",
-//         "resize.js"
-//     )
-//         .then((val) => console.log(val))
-//         .catch((err) => console.error(err.message));
-
-// }
 
 
 /**=======================================================================================================================
