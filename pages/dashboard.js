@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-04T14:23:47.992Z
+Modified: 2023-04-04T14:26:33.958Z
 */
 
 
@@ -117,9 +117,9 @@ async function supaClerk(token) {
                     headers: { Authorization: `Bearer ${token}` },
                 },
                 realtime: {
-                    // headers: {
-                    //     apikey: anon,
-                    // },
+                    headers: {
+                        apikey: anon,
+                    },
                     params: {
                         apikey: token,
                     },
