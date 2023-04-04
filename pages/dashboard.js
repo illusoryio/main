@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-04T14:32:49.076Z
+Modified: 2023-04-04T16:02:38.885Z
 */
 
 
@@ -118,10 +118,10 @@ async function supaClerk(token) {
                 },
                 realtime: {
                     headers: {
-                        apikey: token,
+                        apikey: anon,
                     },
                     params: {
-                        apikey: anon,
+                        apikey: token,
                     },
                 },
             }
@@ -655,7 +655,7 @@ async function rpcProxy(supabaseClient) {
         var supabaseClient = supabaseClient;
         console.log("supabaseClient: ", supabaseClient);
     }
-    await supabaseClient.channel('*')
+    await supabaseClient.channel('proxies_restricted')
         .on(
             'postgres_changes',
             { event: 'UPDATE', schema: 'public', table: 'proxies_restricted' },
