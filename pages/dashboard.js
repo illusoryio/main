@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-04T12:41:04.084Z
+Modified: 2023-04-04T13:11:13.387Z
 */
 
 
@@ -143,7 +143,7 @@ async function supaClient() {
 
 
 async function getProxies(supabaseClient) {
-    if (typeof supabaseClient !== "undefined") {
+    if (typeof supabaseClient == "undefined") {
         var supabaseClient = await supaClient();
     } else {
         var supabaseClient = supabaseClient;
@@ -630,7 +630,7 @@ $("#cea_mod, #cea_nav").click(function (e) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Load RPC v1.0.0]
+ * * /// [Load RPC v2.0.0]
  * ? This function is used to load the RPC data from the database and display it on the page.
  *  
  *  
@@ -639,14 +639,18 @@ $("#cea_mod, #cea_nav").click(function (e) {
 
 
 async function rpcProxy(supabaseClient) {
-    if (typeof supabaseClient !== "undefined") {
+    if (typeof supabaseClient == "undefined") {
         var supabaseClient = await supaClient();
+        console.log("supabaseClient: ", supabaseClient)
     } else {
         var supabaseClient = supabaseClient;
+        console.log("supabaseClient: ", supabaseClient);
     }
-    await supabaseClient
-        .channel("proxies_restricted")
-        .on("UPDATE", (payload) => {
+    const proxiesRestricted = await supabaseClient.channel('custom-all-channel')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'proxies_restricted' },
+    (payload)=> {
             const proxy_name = payload.new.proxy_name;
             const auth_method = payload.new.auth_method;
             const auto_change = payload.new.auto_change;
