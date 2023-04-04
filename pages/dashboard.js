@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-04T14:20:20.218Z
+Modified: 2023-04-04T14:23:47.992Z
 */
 
 
@@ -639,7 +639,7 @@ $("#cea_mod, #cea_nav").click(function (e) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Load RPC v2.0.0]
+ * * /// [Load RPC v2.1.0]
  * ? This function is used to load the RPC data from the database and display it on the page.
  *  
  *  
@@ -655,7 +655,7 @@ async function rpcProxy(supabaseClient) {
         var supabaseClient = supabaseClient;
         console.log("supabaseClient: ", supabaseClient);
     }
-    const proxiesRestricted = await supabaseClient.channel('custom-all-channel')
+    const proxiesRestricted = await supabaseClient.channel('any')
         .on(
             'postgres_changes',
             { event: '*', schema: 'public', table: 'proxies_restricted' },
@@ -815,7 +815,11 @@ async function rpcProxy(supabaseClient) {
                 }
                 otherFuntions();
             })
-        .subscribe();
+        .subscribe(status => {
+            if (status === "SUBSCRIBED") {
+                console.log("SUBSCRIBED")
+            }
+        })
 }
 
 
