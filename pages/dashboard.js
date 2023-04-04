@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-03T18:08:26.022Z
+Modified: 2023-04-04T12:41:04.084Z
 */
 
 
@@ -19,7 +19,6 @@ async function loadClerk() {
         // Get this URL from the Clerk Dashboard
         const frontendApi = "clerk.a7i81.ec7ck.lcl.dev";
         const version = "@latest"; // Set to appropriate version
-
         // Creates asyncronous script
         const script = document.createElement("script");
         script.setAttribute("data-clerk-frontend-api", frontendApi);
@@ -640,6 +639,11 @@ $("#cea_mod, #cea_nav").click(function (e) {
 
 
 async function rpcProxy(supabaseClient) {
+    if (typeof supabaseClient !== "undefined") {
+        var supabaseClient = await supaClient();
+    } else {
+        var supabaseClient = supabaseClient;
+    }
     await supabaseClient
         .channel("proxies_restricted")
         .on("UPDATE", (payload) => {
@@ -1246,7 +1250,6 @@ async function openNav() {
         }, 100);
     });
 }
-
 
 
 /**=======================================================================================================================
