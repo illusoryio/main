@@ -787,6 +787,7 @@ async function rpcProxy(supabaseClient) {
                     $("#cp-isp").html(isp);
                     $("#cp-loc").html(loc);
                     $("#cp-threads").html(s_threads + h_threads + " Threads");
+                    console.log(converted);
                     $("#cp-traffic").html(converted);
                     // $("#cp-lastReset").html(last_ip_change);
                     // $("#cp-lastReboot").html(last_reboot);
