@@ -2,8 +2,8 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-06T21:47:28.378Z
-Version: 1.1.8
+Modified: 2023-04-06T19:53:15.607Z
+Version: 1.1.9
 */
 
 
@@ -94,7 +94,7 @@ async function lscTimeAgo() {
 async function supaToken() {
     let token = "";
     try {
-        token = await window.Clerk.local.getToken({
+        token = await window.Clerk.session.getToken({
             template: "supabase-auth",
         });
         console.log("supaToken", token);
@@ -1522,7 +1522,7 @@ async function reboot_device() {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Clear local Items v1.0.0]
+ * * /// [Clear Local Items v1.0.0]
  * ? Clears local items on page load.
  *  
  *  
