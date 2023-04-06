@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-04T16:02:38.885Z
+Modified: 2023-04-06T15:27:31.900Z
 */
 
 
@@ -118,14 +118,15 @@ async function supaClerk(token) {
                 },
                 realtime: {
                     headers: {
-                        apikey: anon,
+                        apikey: token,
                     },
                     params: {
-                        apikey: token,
+                        apikey: anon,
                     },
                 },
             }
         );
+        client.realtime.setAuth(token)
         console.log(client)
     } catch (e) {
         client = "Invalid Supabase Client";
@@ -152,10 +153,12 @@ async function supaClient() {
 
 
 async function getProxies(supabaseClient) {
-    if (typeof supabaseClient == "undefined") {
+    if (!supabaseClient) {
         var supabaseClient = await supaClient();
+        console.log("supabaseClient New", supabaseClient);
     } else {
         var supabaseClient = supabaseClient;
+        console.log("supabaseClient", supabaseClient);
     }
     const { data, error } = await supabaseClient
         .from("proxies_restricted")
@@ -648,12 +651,12 @@ $("#cea_mod, #cea_nav").click(function (e) {
 
 
 async function rpcProxy(supabaseClient) {
-    if (typeof supabaseClient == "undefined") {
+    if (!supabaseClient) {
         var supabaseClient = await supaClient();
-        console.log("supabaseClient: ", supabaseClient)
+        // console.log("supabaseClient: ", supabaseClient)
     } else {
         var supabaseClient = supabaseClient;
-        console.log("supabaseClient: ", supabaseClient);
+        //  console.log("supabaseClient: ", supabaseClient);
     }
     await supabaseClient.channel('proxies_restricted')
         .on(
@@ -817,9 +820,76 @@ async function rpcProxy(supabaseClient) {
             })
         .subscribe(status => {
             if (status === "SUBSCRIBED") {
-                console.log("SUBSCRIBED")
+                console.log("Subscribed to proxy events")
             }
         })
+}
+
+
+/**=======================================================================================================================
+ *  
+ *  
+ * * /// [RPC Refresh v1.0.0]
+ * ? This function is used to refresh the RPC.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+const sleep = async (milliseconds) => {
+    await new Promise(resolve => {
+        return setTimeout(resolve, milliseconds)
+    });
+};
+
+
+
+async function rpcProxyRefresh() {
+
+    var rpcProxyRunning = sessionStorage.getItem("rpcProxyRunning");;
+
+    if (rpcProxyRunning) {
+        return;
+    } else {
+        async function runRpcProxy() {
+            await sleep(1000);
+            var rpcProxyInterval = sessionStorage.getItem("rpcProxyInterval");
+            if (!rpcProxyInterval) {
+                var rpcProxyIntervalNew = 0 + 1;
+                console.log(rpcProxyIntervalNew);
+                sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
+                runRpcProxy();
+            } else {
+                if (rpcProxyInterval < 50) {
+                    var rpcProxyIntervalNew = parseInt(rpcProxyInterval) + 1;
+                    console.log(rpcProxyIntervalNew);
+                    sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
+
+                    // Check if the current tab is visible
+                    if (document.visibilityState === 'visible') {
+                        runRpcProxy();
+                    } else {
+                        console.log('Tab is not visible');
+                        // Pause the loop if the tab is hidden
+                        document.addEventListener('visibilitychange', function listener() {
+                            if (document.visibilityState === 'visible') {
+                                document.removeEventListener('visibilitychange', listener);
+                                console.log('Tab is visible again');
+                                sessionStorage.removeItem("rpcProxyInterval");
+                                var rpcProxyRunning = sessionStorage.setItem("rpcProxyRunning");
+                                rpcProxyRefresh();
+                            }
+                        });
+                    }
+                } else {
+                    console.log('Refreshing RPC Proxy');
+                    await rpcProxy();
+                    sessionStorage.removeItem("rpcProxyInterval");
+                    rpcProxyRefresh();
+                }
+            }
+        }
+        await runRpcProxy();
+    }
 }
 
 
@@ -1486,6 +1556,7 @@ async function clerkResolved() {
 
     // Load realtime
     await rpcProxy(supabaseClient);
+    await rpcProxyRefresh();
 
     // Load timeago
     await lscTimeAgo();
