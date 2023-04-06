@@ -642,7 +642,7 @@ $("#cea_mod, #cea_nav").click(function (e) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Load RPC v2.1.0]
+ * * /// [Load RPC v2.1.1]
  * ? This function is used to load the RPC data from the database and display it on the page.
  *  
  *  
@@ -727,7 +727,7 @@ async function rpcProxy(supabaseClient) {
                 document.querySelector("[crd_loc=" + proxy_name + "]").innerHTML = loc;
                 document.querySelector("[crd_threads=" + proxy_name + "]").innerHTML =
                     parseInt(h_threads) + parseInt(s_threads) + " threads";
-                document.querySelector("[crd_traffic=" + proxy_name + "]").innerHTML =
+                var convertedTraffic = document.querySelector("[crd_traffic=" + proxy_name + "]").innerHTML =
                     converted;
 
                 var autoChange = auto_change;
@@ -786,7 +786,7 @@ async function rpcProxy(supabaseClient) {
                     $("#cp-isp").html(isp);
                     $("#cp-loc").html(loc);
                     $("#cp-threads").html(s_threads + h_threads + " Threads");
-                    $("#cp-traffic").html(traffic);
+                    $("#cp-traffic").html(convertedTraffic);
                     // $("#cp-lastReset").html(last_ip_change);
                     // $("#cp-lastReboot").html(last_reboot);
                     $("#cp-lastReset").attr("datetime", last_ip_change);
