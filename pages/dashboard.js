@@ -3,6 +3,7 @@ dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
 Modified: 2023-04-06T19:53:15.607Z
+Version: 1.1.3
 */
 
 
@@ -727,7 +728,7 @@ async function rpcProxy(supabaseClient) {
                 document.querySelector("[crd_loc=" + proxy_name + "]").innerHTML = loc;
                 document.querySelector("[crd_threads=" + proxy_name + "]").innerHTML =
                     parseInt(h_threads) + parseInt(s_threads) + " threads";
-                var convertedTraffic = document.querySelector("[crd_traffic=" + proxy_name + "]").innerHTML =
+                document.querySelector("[crd_traffic=" + proxy_name + "]").innerHTML =
                     converted;
 
                 var autoChange = auto_change;
@@ -786,7 +787,7 @@ async function rpcProxy(supabaseClient) {
                     $("#cp-isp").html(isp);
                     $("#cp-loc").html(loc);
                     $("#cp-threads").html(s_threads + h_threads + " Threads");
-                    $("#cp-traffic").html(convertedTraffic);
+                    $("#cp-traffic").html(converted);
                     // $("#cp-lastReset").html(last_ip_change);
                     // $("#cp-lastReboot").html(last_reboot);
                     $("#cp-lastReset").attr("datetime", last_ip_change);
