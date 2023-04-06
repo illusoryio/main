@@ -94,7 +94,7 @@ async function lscTimeAgo() {
 async function supaToken() {
     let token = "";
     try {
-        token = await window.Clerk.session.getToken({
+        token = await window.Clerk.local.getToken({
             template: "supabase-auth",
         });
         console.log("supaToken", token);
@@ -843,7 +843,7 @@ const sleep = async (milliseconds) => {
 };
 
 async function rpcProxyRefresh() {
-    var rpcProxyRunningTimestamp = sessionStorage.getItem("rpcProxyRunning");
+    var rpcProxyRunningTimestamp = localStorage.getItem("rpcProxyRunning");
 
     if (rpcProxyRunningTimestamp && (Date.now() - rpcProxyRunningTimestamp < 50000)) {
         // Return if it has been less than 50 seconds since rpcProxyRunning was set
@@ -851,21 +851,21 @@ async function rpcProxyRefresh() {
         return;
     } else {
         var rpcProxyRunningTimestamp = Date.now();
-        sessionStorage.setItem("rpcProxyRunning", rpcProxyRunningTimestamp);
+        localStorage.setItem("rpcProxyRunning", rpcProxyRunningTimestamp);
         async function runRpcProxy() {
             await sleep(1000);
-            var rpcProxyInterval = sessionStorage.getItem("rpcProxyInterval");
+            var rpcProxyInterval = localStorage.getItem("rpcProxyInterval");
 
             if (!rpcProxyInterval) {
                 var rpcProxyIntervalNew = 0 + 1;
                 // console.log(rpcProxyIntervalNew);
-                sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
+                localStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
                 runRpcProxy();
             } else {
                 if (rpcProxyInterval < 50) {
                     var rpcProxyIntervalNew = parseInt(rpcProxyInterval) + 1;
                     // console.log(rpcProxyIntervalNew);
-                    sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
+                    localStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
 
                     // Check if the current tab is visible
                     if (document.visibilityState === 'visible') {
@@ -877,7 +877,7 @@ async function rpcProxyRefresh() {
                             if (document.visibilityState === 'visible') {
                                 document.removeEventListener('visibilitychange', listener);
                                 console.log('Tab is visible again');
-                                sessionStorage.setItem("rpcProxyInterval", 1);
+                                localStorage.setItem("rpcProxyInterval", 1);
                                 rpcProxyRefresh();
                             }
                         });
@@ -885,8 +885,8 @@ async function rpcProxyRefresh() {
                 } else {
                     console.log('Refreshing RPC Proxy');
                     await rpcProxy();
-                    sessionStorage.removeItem("rpcProxyInterval");
-                    sessionStorage.removeItem("rpcProxyRunning");
+                    localStorage.removeItem("rpcProxyInterval");
+                    localStorage.removeItem("rpcProxyRunning");
                     rpcProxyRefresh();
                 }
             }
@@ -1522,20 +1522,20 @@ async function reboot_device() {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Clear Session Items v1.0.0]
- * ? Clears session items on page load.
+ * * /// [Clear local Items v1.0.0]
+ * ? Clears local items on page load.
  *  
  *  
  *=======================================================================================================================**/
 
 
-// Clear session items
-async function clearSessionItems() {
+// Clear local items
+async function clearLocalItems() {
     return new Promise((resolve) => {
-        sessionStorage.removeItem("rpcProxyInterval");
-        sessionStorage.removeItem("rpcProxyRunning");
+        localStorage.removeItem("rpcProxyInterval");
+        localStorage.removeItem("rpcProxyRunning");
         setTimeout(() => {
-            resolve("Cleared session items");
+            resolve("Cleared local items");
         }, 100);
     });
 }
@@ -1556,7 +1556,7 @@ async function clearSessionItems() {
 
 async function pageInit() {
     // await lscSupaClient();
-    await clearSessionItems();
+    await clearlocalItems();
     await loadClerk();
 }
 
