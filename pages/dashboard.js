@@ -829,7 +829,7 @@ async function rpcProxy(supabaseClient) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [RPC Refresh v2.0.0]
+ * * /// [RPC Refresh v2.0.1]
  * ? This function is used to refresh the RPC.
  *  
  *  
@@ -861,7 +861,7 @@ async function rpcProxyRefresh() {
                 sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
                 runRpcProxy();
             } else {
-                if (rpcProxyInterval < 10) {
+                if (rpcProxyInterval < 50) {
                     var rpcProxyIntervalNew = parseInt(rpcProxyInterval) + 1;
                     // console.log(rpcProxyIntervalNew);
                     sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
