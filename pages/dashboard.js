@@ -3,7 +3,7 @@ dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
 Modified: 2023-04-06T19:53:15.607Z
-Version: 1.1.9
+Version: 1.1.10
 */
 
 
@@ -1186,12 +1186,46 @@ async function interact(clicked_object) {
             var autoMinOnly = data[0].auto_change_time;
             var authMethodVal = data[0].auth_method;
 
+
+            if (traffic < 1024) {
+                var suffix = "Bytes";
+                var divider = 1;
+            } else {
+                if (traffic >= 1024 && traffic < 1048576) {
+                    var suffix = "KB";
+                    var divider = 1024;
+                } else {
+                    if (traffic >= 1048576 && traffic < 1073741824) {
+                        var suffix = "MB";
+                        var divider = 1048576;
+                    } else {
+                        if (traffic >= 1073741824 && traffic < 1099511627776) {
+                            var suffix = "GB";
+                            var divider = 1073741824;
+                        } else {
+                            if (traffic >= 1099511627776) {
+                                var suffix = "TB";
+                                var divider = 1099511627776;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (traffic < 1024) {
+                var divided = parseInt(traffic) / parseInt(divider);
+                var converted = divided + " " + suffix;
+            } else {
+                var divided = parseInt(traffic) / parseInt(divider);
+                var converted = divided.toFixed(2) + " " + suffix;
+            }
+
             $("#currentProxy").html(proxy);
             $("#cp-autoMinOnly").val(autoMinOnly);
             $("#cp-isp").html(isp);
             $("#cp-loc").html(loc);
             $("#cp-threads").html(sConn + hConn + " Threads");
-            $("#cp-traffic").html(traffic);
+            $("#cp-traffic").html(converted);
             $("#cp-lastReset").html(lastIpChange);
             $("#cp-lastReboot").html(lastReboot);
             $("#cp-lastReset").attr("datetime", lastIpChange);
