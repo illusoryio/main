@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-06T15:40:08.915Z
+Modified: 2023-04-06T16:17:55.865Z
 */
 
 
@@ -91,7 +91,7 @@ async function lscTimeAgo() {
 
 
 async function supaToken() {
-    let token;
+    let token = "";
     try {
         token = await window.Clerk.session.getToken({
             template: "supabase-auth",
@@ -99,7 +99,7 @@ async function supaToken() {
         console.log("supaToken", token);
     } catch (e) {
         token = "Invalid token";
-        console.error(err);
+        console.error(e);
     }
     return token;
 }
@@ -829,7 +829,7 @@ async function rpcProxy(supabaseClient) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [RPC Refresh v1.0.0]
+ * * /// [RPC Refresh v2.0.0]
  * ? This function is used to refresh the RPC.
  *  
  *  
@@ -841,27 +841,29 @@ const sleep = async (milliseconds) => {
     });
 };
 
-
-
 async function rpcProxyRefresh() {
+    var rpcProxyRunningTimestamp = sessionStorage.getItem("rpcProxyRunning");
 
-    var rpcProxyRunning = sessionStorage.getItem("rpcProxyRunning");;
-
-    if (rpcProxyRunning) {
+    if (rpcProxyRunningTimestamp && (Date.now() - rpcProxyRunningTimestamp < 50000)) {
+        // Return if it has been less than 50 seconds since rpcProxyRunning was set
+        console.log('RPC Proxy Refresh is already running');
         return;
     } else {
+        var rpcProxyRunningTimestamp = Date.now();
+        sessionStorage.setItem("rpcProxyRunning", rpcProxyRunningTimestamp);
         async function runRpcProxy() {
             await sleep(1000);
             var rpcProxyInterval = sessionStorage.getItem("rpcProxyInterval");
+
             if (!rpcProxyInterval) {
                 var rpcProxyIntervalNew = 0 + 1;
-                console.log(rpcProxyIntervalNew);
+                // console.log(rpcProxyIntervalNew);
                 sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
                 runRpcProxy();
             } else {
-                if (rpcProxyInterval < 50) {
+                if (rpcProxyInterval < 10) {
                     var rpcProxyIntervalNew = parseInt(rpcProxyInterval) + 1;
-                    console.log(rpcProxyIntervalNew);
+                    // console.log(rpcProxyIntervalNew);
                     sessionStorage.setItem("rpcProxyInterval", rpcProxyIntervalNew);
 
                     // Check if the current tab is visible
@@ -874,8 +876,7 @@ async function rpcProxyRefresh() {
                             if (document.visibilityState === 'visible') {
                                 document.removeEventListener('visibilitychange', listener);
                                 console.log('Tab is visible again');
-                                sessionStorage.removeItem("rpcProxyInterval");
-                                var rpcProxyRunning = sessionStorage.setItem("rpcProxyRunning");
+                                sessionStorage.setItem("rpcProxyInterval", 1);
                                 rpcProxyRefresh();
                             }
                         });
@@ -884,6 +885,7 @@ async function rpcProxyRefresh() {
                     console.log('Refreshing RPC Proxy');
                     await rpcProxy();
                     sessionStorage.removeItem("rpcProxyInterval");
+                    sessionStorage.removeItem("rpcProxyRunning");
                     rpcProxyRefresh();
                 }
             }
@@ -891,7 +893,6 @@ async function rpcProxyRefresh() {
         await runRpcProxy();
     }
 }
-
 
 
 /**=======================================================================================================================
@@ -1520,6 +1521,29 @@ async function reboot_device() {
 /**=======================================================================================================================
  *  
  *  
+ * * /// [Clear Session Items v1.0.0]
+ * ? Clears session items on page load.
+ *  
+ *  
+ *=======================================================================================================================**/
+
+
+// Clear session items
+async function clearSessionItems() {
+    return new Promise((resolve) => {
+        sessionStorage.removeItem("rpcProxyInterval");
+        sessionStorage.removeItem("rpcProxyRunning");
+        setTimeout(() => {
+            resolve("Cleared session items");
+        }, 100);
+    });
+}
+
+
+
+/**=======================================================================================================================
+ *  
+ *  
  * * /// [Page Load v1.0.0]
  * ? Functions to load page.
  *  
@@ -1527,10 +1551,11 @@ async function reboot_device() {
  *=======================================================================================================================**/
 
 
-//* Page load async
+// Page load async
 
 async function pageInit() {
     // await lscSupaClient();
+    await clearSessionItems();
     await loadClerk();
 }
 
