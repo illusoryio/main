@@ -2,8 +2,8 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-06T21:46:03.979Z
-Version: 1.1.7
+Modified: 2023-04-06T21:47:28.378Z
+Version: 1.1.8
 */
 
 
@@ -1556,7 +1556,7 @@ async function clearLocalItems() {
 
 async function pageInit() {
     // await lscSupaClient();
-    await clearlocalItems();
+    await clearLocalItems();
     await loadClerk();
 }
 
