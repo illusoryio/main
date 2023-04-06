@@ -285,41 +285,34 @@ async function getProxies(supabaseClient) {
                     threadsTitle.setAttribute("crd_threads", item.proxy_name);
                     indicatorWrap.appendChild(threadsTitle);
 
-                    if (item.traffic < 1024) {
-                        var suffix = "Bytes";
-                        var divider = 1;
-                    } else {
-                        if (item.traffic >= 1024 && item.traffic < 1048576) {
-                            var suffix = "KB";
-                            var divider = 1024;
-                        } else {
-                            if (item.traffic >= 1048576 && item.traffic < 1073741824) {
-                                var suffix = "MB";
-                                var divider = 1048576;
-                            } else {
-                                if (
-                                    item.traffic >= 1073741824 &&
-                                    item.traffic < 1099511627776
-                                ) {
-                                    var suffix = "GB";
-                                    var divider = 1073741824;
-                                } else {
-                                    if (item.traffic >= 1099511627776) {
-                                        var suffix = "TB";
-                                        var divider = 1099511627776;
-                                    }
-                                }
-                            }
-                        }
+                    var suffix, divider, divided, converted;
+
+                    switch (true) {
+                        case item.traffic >= 1099511627776:
+                            suffix = "TB";
+                            divider = 1099511627776;
+                            break;
+                        case item.traffic >= 1073741824:
+                            suffix = "GB";
+                            divider = 1073741824;
+                            break;
+                        case item.traffic >= 1048576:
+                            suffix = "MB";
+                            divider = 1048576;
+                            break;
+                        case item.traffic >= 1024:
+                            suffix = "KB";
+                            divider = 1024;
+                            break;
+                        default:
+                            suffix = "Bytes";
+                            divider = 1;
                     }
 
-                    if (item.traffic < 1024) {
-                        var divided = parseInt(item.traffic) / parseInt(divider);
-                        var converted = divided + " " + suffix;
-                    } else {
-                        var divided = parseInt(item.traffic) / parseInt(divider);
-                        var converted = divided.toFixed(2) + " " + suffix;
-                    }
+                    divided = item.traffic / divider;
+                    converted = divided >= 1024 ? divided.toFixed(2) : divided;
+
+                    converted += " " + suffix;
 
                     // Add proxy card traffic indicator
                     const trafficTitle = document.createElement("div");
@@ -690,38 +683,35 @@ async function rpcProxy(supabaseClient) {
 
                 console.log(payload);
 
-                if (traffic < 1024) {
-                    var suffix = "Bytes";
-                    var divider = 1;
-                } else {
-                    if (traffic >= 1024 && traffic < 1048576) {
-                        var suffix = "KB";
-                        var divider = 1024;
-                    } else {
-                        if (traffic >= 1048576 && traffic < 1073741824) {
-                            var suffix = "MB";
-                            var divider = 1048576;
-                        } else {
-                            if (traffic >= 1073741824 && traffic < 1099511627776) {
-                                var suffix = "GB";
-                                var divider = 1073741824;
-                            } else {
-                                if (traffic >= 1099511627776) {
-                                    var suffix = "TB";
-                                    var divider = 1099511627776;
-                                }
-                            }
-                        }
-                    }
+                var suffix, divider, divided, converted;
+
+                switch (true) {
+                    case item.traffic >= 1099511627776:
+                        suffix = "TB";
+                        divider = 1099511627776;
+                        break;
+                    case item.traffic >= 1073741824:
+                        suffix = "GB";
+                        divider = 1073741824;
+                        break;
+                    case item.traffic >= 1048576:
+                        suffix = "MB";
+                        divider = 1048576;
+                        break;
+                    case item.traffic >= 1024:
+                        suffix = "KB";
+                        divider = 1024;
+                        break;
+                    default:
+                        suffix = "Bytes";
+                        divider = 1;
                 }
 
-                if (traffic < 1024) {
-                    var divided = parseInt(traffic) / parseInt(divider);
-                    var converted = divided + " " + suffix;
-                } else {
-                    var divided = parseInt(traffic) / parseInt(divider);
-                    var converted = divided.toFixed(2) + " " + suffix;
-                }
+                divided = item.traffic / divider;
+                converted = divided >= 1024 ? divided.toFixed(2) : divided;
+
+                converted += " " + suffix;
+
                 document.querySelector("[crd_ports=" + proxy_name + "]").innerHTML =
                     "HTTP " + h_port + " • " + "SOCKS5 " + s_port;
                 document.querySelector("[crd_isp=" + proxy_name + "]").innerHTML = isp;
@@ -787,7 +777,6 @@ async function rpcProxy(supabaseClient) {
                     $("#cp-isp").html(isp);
                     $("#cp-loc").html(loc);
                     $("#cp-threads").html(s_threads + h_threads + " Threads");
-                    console.log(converted);
                     $("#cp-traffic").html(converted);
                     // $("#cp-lastReset").html(last_ip_change);
                     // $("#cp-lastReboot").html(last_reboot);
@@ -1187,6 +1176,37 @@ async function interact(clicked_object) {
             var autoMinOnly = data[0].auto_change_time;
             var authMethodVal = data[0].auth_method;
 
+
+            var suffix, divider, divided, converted;
+            var traffic = 1234567890; // replace this with your actual traffic value
+
+            switch (true) {
+                case traffic >= 1099511627776:
+                    suffix = "TB";
+                    divider = 1099511627776;
+                    break;
+                case traffic >= 1073741824:
+                    suffix = "GB";
+                    divider = 1073741824;
+                    break;
+                case traffic >= 1048576:
+                    suffix = "MB";
+                    divider = 1048576;
+                    break;
+                case traffic >= 1024:
+                    suffix = "KB";
+                    divider = 1024;
+                    break;
+                default:
+                    suffix = "Bytes";
+                    divider = 1;
+            }
+
+            divided = traffic / divider;
+            converted = divided >= 1024 ? divided.toFixed(2) : divided;
+
+            converted += " " + suffix;
+
             $("#currentProxy").html(proxy);
             $("#cp-autoMinOnly").val(autoMinOnly);
             $("#cp-isp").html(isp);
@@ -1266,7 +1286,7 @@ async function interact(clicked_object) {
  *  
  *  
  * * /// [Modal Open_Close v1.0.0]
- *  
+ *  ? Open and close the modal.
  *  
  *=======================================================================================================================**/
 
