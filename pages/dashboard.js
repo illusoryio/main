@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-07T15:13:35.638Z
+Modified: 2023-04-07T15:34:48.333Z
 */
 
 
@@ -1524,9 +1524,9 @@ $("#change_ip_mod").click(function () {
 async function change_ip() {
     var supabaseClient = await supaClient();
     var currentProxy = localStorage.getItem('currentProxy');
-    var { data: { user } } = await supabaseClient.auth.getUser();
+    // var { data: { user } } = await supabaseClient.auth.getUser();
 
-    let { data, error } = await supabaseClient.rpc("dash_func_change_ip_v3", {
+    let { data, error } = await supabaseClient.rpc("dash_func_change_ip_v4", {
         name_input: currentProxy,
         change_ip_input: true,
         // email_input: user.email,
