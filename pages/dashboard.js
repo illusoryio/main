@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-07T14:14:49.568Z
+Modified: 2023-04-07T14:33:02.274Z
 */
 
 
@@ -837,7 +837,7 @@ async function rpcProxy(supabaseClient) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [RPC Refresh v2.0.1]
+ * * /// [RPC Refresh v2.0.2]
  * ? This function is used to refresh the RPC.
  *  
  *  
@@ -885,7 +885,7 @@ async function rpcProxyRefresh() {
                                 document.removeEventListener('visibilitychange', listener);
                                 console.log('Tab is visible again');
                                 localStorage.setItem("rpcProxyInterval", 1);
-                                rpcProxyRefresh();
+                                runRpcProxy();
                             }
                         });
                     }
