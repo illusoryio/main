@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-07T14:33:02.274Z
+Modified: 2023-04-07T14:37:29.698Z
 */
 
 
@@ -880,10 +880,11 @@ async function rpcProxyRefresh() {
                     } else {
                         console.log('Tab is not visible');
                         // Pause the loop if the tab is hidden
-                        document.addEventListener('visibilitychange', function listener() {
+                        document.addEventListener('visibilitychange', async function listener() {
                             if (document.visibilityState === 'visible') {
                                 document.removeEventListener('visibilitychange', listener);
                                 console.log('Tab is visible again');
+                                await rpcProxy();
                                 localStorage.setItem("rpcProxyInterval", 1);
                                 runRpcProxy();
                             }
