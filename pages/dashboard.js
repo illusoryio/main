@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-07T13:38:01.383Z
+Modified: 2023-04-07T13:54:41.132Z
 */
 
 
@@ -730,6 +730,7 @@ async function rpcProxy(supabaseClient) {
                 document.querySelector("[crd_traffic=" + proxy_name + "]").innerHTML =
                     converted;
 
+
                 var autoChange = auto_change;
                 if (autoChange == true) {
                     document
@@ -781,6 +782,13 @@ async function rpcProxy(supabaseClient) {
                 var current_proxy = urlParams.get("proxy");
 
                 if (current_proxy == proxy_name) {
+                    if (online == true) {
+                        $("#cp-online").show();
+                        $("#cp-offline").hide();
+                    } else {
+                        $("#cp-online").hide();
+                        $("#cp-offline").show();
+                    }
                     $("#currentProxy").html(proxy_name);
                     $("#cp-autoMinOnly").val(auto_change_time);
                     $("#cp-isp").html(isp);
