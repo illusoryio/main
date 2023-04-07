@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-07T14:37:29.698Z
+Modified: 2023-04-07T15:13:35.638Z
 */
 
 
@@ -1507,7 +1507,7 @@ async function clerkActions(supabaseClient, action) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Proxy Actions (Legacy) v1.0.0]
+ * * /// [Proxy Actions (Legacy) v1.1.0]
  * ? Functions to perform actions.
  *  
  *  
@@ -1522,7 +1522,7 @@ $("#change_ip_mod").click(function () {
 });
 
 async function change_ip() {
-
+    var supabaseClient = await supaClient();
     var currentProxy = localStorage.getItem('currentProxy');
     var { data: { user } } = await supabaseClient.auth.getUser();
 
