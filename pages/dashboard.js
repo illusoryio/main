@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-07T15:34:48.333Z
+Modified: 2023-04-10T15:23:31.764Z
 */
 
 
@@ -1517,6 +1517,29 @@ async function clerkActions(supabaseClient, action) {
 
 //* Change IP modal
 
+// $("#change_ip_mod").click(function () {
+//     change_ip();
+// });
+
+// async function change_ip() {
+//     var supabaseClient = await supaClient();
+//     var currentProxy = localStorage.getItem('currentProxy');
+//     // var { data: { user } } = await supabaseClient.auth.getUser();
+
+//     let { data, error } = await supabaseClient.rpc("dash_func_change_ip_v4", {
+//         name_input: currentProxy,
+//         change_ip_input: true,
+//         // email_input: user.email,
+//         origin_input: "dashboard"
+//     });
+
+//     if (error) console.error(error);
+//     else console.log(data);
+// }
+
+
+//* Change IP modal
+
 $("#change_ip_mod").click(function () {
     change_ip();
 });
@@ -1524,19 +1547,32 @@ $("#change_ip_mod").click(function () {
 async function change_ip() {
     var supabaseClient = await supaClient();
     var currentProxy = localStorage.getItem('currentProxy');
-    // var { data: { user } } = await supabaseClient.auth.getUser();
+    var data = {
+        proxy: currentProxy,
+    }
 
-    let { data, error } = await supabaseClient.rpc("dash_func_change_ip_v4", {
-        name_input: currentProxy,
-        change_ip_input: true,
-        // email_input: user.email,
-        origin_input: "dashboard"
+    const options = {
+        method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/test',
+        headers: { 'Content-Type': 'application/json', 'supabaseClient': supabaseClient },
+        data: data
+    };
+
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.error(error);
     });
 
-    if (error) console.error(error);
-    else console.log(data);
+
 }
 
+const options = { method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/test', headers: { 'Content-Type': 'application/json', 'supabaseClient': supabaseClient } };
+
+axios.request(options).then(function (response) {
+    console.log(response.data);
+}).catch(function (error) {
+    console.error(error);
+});
 
 //* Reboot proxy modal
 
