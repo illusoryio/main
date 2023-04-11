@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-10T15:23:31.764Z
+Modified: 2023-04-11T00:18:34.633Z
 */
 
 
@@ -1545,15 +1545,18 @@ $("#change_ip_mod").click(function () {
 });
 
 async function change_ip() {
-    var supabaseClient = await supaClient();
+    // var supabaseClient = await supaClient();
+    var token = await supaToken();
     var currentProxy = localStorage.getItem('currentProxy');
     var data = {
         proxy: currentProxy,
+        token: token,
+        // supabaseClient: supabaseClient
     }
 
     const options = {
         method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/test',
-        headers: { 'Content-Type': 'application/json', 'supabaseClient': supabaseClient },
+        headers: { 'Content-Type': 'application/json' },
         data: data
     };
 
@@ -1562,17 +1565,7 @@ async function change_ip() {
     }).catch(function (error) {
         console.error(error);
     });
-
-
 }
-
-const options = { method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/test', headers: { 'Content-Type': 'application/json', 'supabaseClient': supabaseClient } };
-
-axios.request(options).then(function (response) {
-    console.log(response.data);
-}).catch(function (error) {
-    console.error(error);
-});
 
 //* Reboot proxy modal
 
