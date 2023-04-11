@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-11T02:08:40.490Z
+Modified: 2023-04-11T12:50:48.810Z
 */
 
 
@@ -1507,7 +1507,7 @@ async function clerkActions(supabaseClient, action) {
 /**=======================================================================================================================
  *  
  *  
- * * /// [Proxy Actions (Legacy) v2.0.0]
+ * * /// [Proxy Actions v2.0.0]
  * ? Functions to perform actions.
  *  
  *  
@@ -1530,7 +1530,7 @@ async function change_ip() {
     }
     const options = {
         method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/test',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         data: data
     };
 
