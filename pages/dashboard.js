@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-11T12:50:48.810Z
+Modified: 2023-04-11T12:55:00.349Z
 */
 
 
@@ -1529,7 +1529,7 @@ async function change_ip() {
         origin: "dashboard"
     }
     const options = {
-        method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/test',
+        method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/app-reset',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         data: data
     };
