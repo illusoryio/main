@@ -1,26 +1,26 @@
 ---
-    name: "pre-release"
-    
-    on:
-      push:
-        branches:
-          - "main"
-    
-    jobs:
-      pre-release:
-        name: "Pre Release"
-        runs-on: "ubuntu-latest"
-    
-        steps:
-          # ...
-          - name: "Build & test"
-            run: |
-              echo "done!"
-    
-          - uses: "marvinpinto/action-automatic-releases@latest"
-            with:
-              repo_token: "${{ secrets.GITHUB_TOKEN }}"
-              automatic_release_tag: "latest"
-              prerelease: true
-              title: "Development Build"
-              files: |
+- name: Delete Old Releases
+  # You may pin to the exact commit or the version.
+  # uses: Nats-ji/delete-old-releases@d247c0e597d4507f7bbba8e75fdba710e6821b43
+  uses: Nats-ji/delete-old-releases@v1.0.1
+  with:
+    # Github token
+    token: 
+    # Number of releases to keep
+    keep-count: 5 # optional, default is 3
+    # Keep the latest release of each older minor versions.
+    keep-old-minor-releases: 
+    # Which semver level should we use to keep old release? Can be: major, minor, patch
+    keep-old-minor-releases-by: # optional, default is minor
+    # Number of old releases in one minor version to keep.
+    keep-old-minor-releases-count: # optional, default is 1
+    # Always include prerelease versions
+    include-prerelease: # optional
+    # Interpret versions and ranges loosely
+    semver-loose: # optional
+    # Also remove the tags associated with the removed releases.
+    remove-tags: # optional
+    # Doesn't delete anything. Only a test run.
+    dry-run: # optional
+
+---
