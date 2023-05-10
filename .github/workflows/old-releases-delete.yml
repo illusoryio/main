@@ -1,0 +1,19 @@
+name: Delete releases and workflows runs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  delete-releases-workflows:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete releases and workflows
+        uses: dev-drprasad/delete-older-releases@v0.2.1
+        with:
+            repo: # <owner>/<repoName> # defaults to current repo
+            keep_latest: 5
+            delete_tag_pattern: # beta # defaults to ""
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
