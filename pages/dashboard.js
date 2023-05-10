@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-04-13T15:50:18.160Z
+Modified: 2023-05-10T17:36:51.053Z
 */
 
 
@@ -141,6 +141,46 @@ async function supaClient() {
     return client;
 }
 
+/**=======================================================================================================================
+ * 
+ * *  /// [Get API Keys v1.0.0]
+ * ? Gets proxies from Supabase and displays them on the page
+ * 
+ *=======================================================================================================================**/
+
+
+
+
+async function getApiKeys(supabaseClient) {
+    if (!supabaseClient) {
+        var supabaseClient = await supaClient();
+        console.log("supabaseClient New", supabaseClient);
+    } else {
+        var supabaseClient = supabaseClient;
+        console.log("supabaseClient", supabaseClient);
+    }
+
+    let { data: api_keys, error } = await supabaseClient
+        .from('api_keys')
+        .select('*')
+        .order("default", { ascending: true });
+    return new Promise((resolve) => {
+        if (error) {
+            console.error("we got an error:", error);
+        } else {
+
+            var items = api_keys;
+            for (var i = 0; i < items.length; i++) {
+                // Keys array
+                var item = items[i];
+                console.log(item.zpka_key);
+            }
+        }
+        setTimeout(() => {
+            resolve();
+        }, 200);
+    });
+}
 
 /**=======================================================================================================================
  * 
@@ -1526,7 +1566,8 @@ async function change_ip() {
     var data = {
         proxy: currentProxy,
         token: token,
-        origin: "dashboard"
+        origin: "dashboard",
+        apiKey: "zpka_fb94f54eb2e840ff8de4a8ec60fe4df9_1c64696d"
     }
     const options = {
         method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/app-reset',
