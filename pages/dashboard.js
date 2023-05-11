@@ -2,7 +2,7 @@
 dashboard.js (c) 2023
 Desc: Dashboard scripts!
 Created:  2023-03-31T16:10:05.904Z
-Modified: 2023-05-10T17:36:51.053Z
+Modified: 2023-05-11T13:10:06.170Z
 */
 
 
@@ -1567,7 +1567,6 @@ async function change_ip() {
         proxy: currentProxy,
         token: token,
         origin: "dashboard",
-        apiKey: "zpka_fb94f54eb2e840ff8de4a8ec60fe4df9_1c64696d"
     }
     const options = {
         method: 'POST', url: 'https://cmd-illusory-main-0cdab46.d2.zuplo.dev/app-reset',
